@@ -24,7 +24,7 @@ export const HeadName = styled.div`
     display:flex;
     flex-direction : row;
     align-items:center;
-
+    /* text-align : center; */
     font-size: 24px;
 `
 
@@ -39,21 +39,25 @@ export const TitleName = styled.div`
     font-size: 30px;
     color: #cacaca;
 `
-
+// 질문
 export const Question = styled.div`
-    /* background-color:cornflowerblue; */
+    background-color:cornflowerblue;
     margin-left:50px;
 `
 export const Span = styled.div`
     font-family: SpoqaHanSans;
     font-size: 18px;
     color: #adadad;
+    background-color:yellow;
 `
 
 export const QuestionTitle = styled.div`
     font-size: 24px;
     margin-bottom:40px;
+    background-color: green;
 `
+
+
 
 export const Navigation = styled.div`
     font-size: 16px;

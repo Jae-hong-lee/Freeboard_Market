@@ -12,7 +12,7 @@ import { NavigationBtn } from "../../../styles/emotion2"
 export default function MyPage(){
     
     // 여기는 자바스크립트 쓰는 곳
-
+    // 틀 다시잡기.
     return(
         // 여기는 HTML
         // Rectangle
@@ -25,7 +25,7 @@ export default function MyPage(){
                 <HeadName>
                     <ProfilePhoto className="phoneImage" src="/images/Profile.png" />
                     임정아
-                    <img src="/images/arrow-right.png" />
+                    <img src="/images/arrow.png" />
                 </HeadName>
             </Head>
             {/* title? */}
@@ -35,7 +35,7 @@ export default function MyPage(){
                 <TitleName>FAQ</TitleName>
                 <TitleName>Q&A</TitleName>
             </Title>
-            {/* list */}
+            {/* list span, Question 묶고 이미지 추가?*/}
             <Question>
                 <Span>Q. 01</Span>
                 <QuestionTitle>리뷰 작성은 어떻게 하나요?</QuestionTitle>
@@ -70,13 +70,6 @@ export default function MyPage(){
                     <img src="/images/selected.png"/>
                     마이
                 </NavigationBtn>
-                
-                {/* <nav>
-                    <ul>
-                        <li>
-                        </li>
-                    </ul>
-                </nav> */}
             </Navigation>
         </Rectangle>
     )
