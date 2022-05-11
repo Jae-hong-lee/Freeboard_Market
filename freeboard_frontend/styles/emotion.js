@@ -3,10 +3,6 @@ import styled from '@emotion/styled'
 
 export const Box = styled.div`
     width: 1200px;
-    /* background: #FFFFFF;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-    display:flex;
-    flex-direction: column; */
     border: 1px solid black;
     margin: 100px;
     padding: 80px 102px 100px 102px ;
@@ -15,20 +11,14 @@ export const Box = styled.div`
     align-items: center;
     border: none;
     box-shadow: 0px 0px 10px gray;
-`
+`;
 
 export const Title = styled.h1`
-    /* font-weight: 700;
-    font-size: 36px;
-    text-align: center;
-    color : black;
-    padding-top: 60px; */
-    /* background-color : yellow; */
     font-family:Arial, Helvetica, sans-serif;
     /* 찾아보기 */
     font-size: 36px;
     font-weight: bold;
-`
+`;
 
 // 유저
 export const UserWrapper = styled.div`
@@ -36,24 +26,22 @@ export const UserWrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* padding-bottom: 80px; */
     padding-top:40px;
-`
+`;
+
 export const NameInput = styled.input`
     border: 1px solid #BDBDBD;
     width: 486px;
     height: 52px;
-    /* margin-right:12px; */
     padding-left: 16px;
-`
+`;
+
 export const PasswordInput = styled.input`
     border: 1px solid #BDBDBD;
     width: 486px;
     height: 52px;
-    /* margin-right:12px; */
     padding-left: 16px;
-`
-/* 패딩이나 마진 값 줄때 하나로 통일하기 */
+`;
 
 export const Label = styled.div`
     padding-bottom: 16px;
@@ -63,10 +51,6 @@ export const Label = styled.div`
 export const InputWrapper = styled.div`
     padding-top: 40px;
 `;
-
-// ---------
-
-
 // 제목
 
 export const Contents = styled.input`
@@ -81,14 +65,9 @@ export const TitleInput = styled.input`
     border: 1px solid #BDBDBD;
     width: 996px;
     height: 52px;
-    /* margin-bottom:30px */
 `
 // 내용
 export const ContentText = styled.input`
-    /* width: 996px;
-    height: 480px;
-    background: #FFFFFF;
-    border: 1px solid #BDBDBD; */
         /* 패딩주기 */
     width: 996px;
     height: 480px;
@@ -114,10 +93,6 @@ export const AddressInput = styled.input`
     /* border: 1px solid #BDBDBD; */
 `
 export const Title2Input = styled.input`
-    /* border: 1px solid #BDBDBD;
-    width: 996px;
-    height: 52px;
-    margin-bottom:15px; */
         /* 패딩주기 */
     width: 996px;
     height: 52px;
@@ -193,3 +168,9 @@ export const SubmitButton = styled.button`
 
     background-color: #FFD600;
 `;
+
+export const Error = styled.div`
+  padding-top: 10px;
+  font-size: 14px;
+  color: red;
+`
