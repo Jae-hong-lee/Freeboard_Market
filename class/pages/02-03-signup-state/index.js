@@ -42,7 +42,6 @@ export default function SignupStatePage(){
             이메일: <input type="text" onChange={onChangeEmail} /><br />
             <div>{emailError}</div>
             비밀번호: <input type="password" onChange={onChangePassword} /><br />
-           
             <button onClick={onClickSignup}>회원가입</button>
         </div>
     )

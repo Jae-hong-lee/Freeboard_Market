@@ -12,34 +12,23 @@ export default function SignUpForm() {
     function handleChangeId(event) {
         setid(event.target.value)
     }
-
     function handleChangePw(event) {
         setpw(event.target.value)
     }
-
     function handleChangePw2(event) {
         setpw2(event.target.value)
     }
 
     function onClickSingup() {
-        // console.log(id)
-        // console.log(pw)
-        // console.log(pw2)
 
         if (id.includes('@') === false) {
             setErroId("이메일이 아닙니다.")
         }
-        else{
-            setid('')
-        }
-        if (pw !== pw2) {
+        if (pw !== pw2 ) {
             setErroPw("비밀번호가 다릅니다.")
         }
-        else {
-            setpw('')
-            setpw2('')
-        }
 
+        // 발생한 에러를 빨간색으로 입력창 하단에 표시
     }
     return(
 
@@ -47,15 +36,16 @@ export default function SignUpForm() {
             <h1>로그인</h1>
 
             <div>이메일</div>
-            <input type="text" onChange={handleChangeId}/>
+            <input id="tag" type="text" onChange={handleChangeId}/>
+            
             <div style={{color: 'red'}}>{errorId}</div>
 
             <div>비밀번호</div>
-            <input type="password" onChange={handleChangePw}/>
+            <input id="tag" type="password" onChange={handleChangePw}/>
             <div style={{color: 'red'}}>{errorPw}</div>
 
             <div>비밀번호확인</div>
-            <input type="password" onChange={handleChangePw2}/>
+            <input id="tag" type="password" onChange={handleChangePw2}/>
             <div style={{color: 'red'}}>{errorPw}</div>
             <br/>
 

@@ -68,13 +68,10 @@ export const InputWrapper = styled.div`
 
 
 // 제목
-export const SubTitle = styled.div`
-    padding-bottom:40px;
-`
 
-export const Contents = styled.div`
+export const Contents = styled.input`
     width: 996px;
-    height: 480px;
+    height: 52px;
     padding-left: 16px;
     padding: 14px;
     border: 1px solid #bdbdbd;
