@@ -10,6 +10,8 @@ import { Youtube } from "../../../styles/emotion"
 import { UploadButton } from "../../../styles/emotion"
 import { SubmitButton } from "../../../styles/emotion"
 import { Error } from "../../../styles/emotion"
+
+
 export default function MyPage(){
 // useState 연습하기.
     const [User, setUser] = useState("")
@@ -22,19 +24,29 @@ export default function MyPage(){
     const [ErrorTitleContents, setErrorTitleContents] = useState("")
     const [ErrorTitleInput, setErrorTitleInput] = useState("")
  
-
-
     function onChangeUser(event) {
         setUser(event.target.value)
+        if (event.target.value !=="") {
+            setErrorUser("")
+        }
     }
     function onChangePw(event) {
         setPassword(event.target.value)
+        if (event.target.value !=="") {
+            setErrorPw("")
+        }
     }
     function onChangeTitleContents(event) {
         setTitleContens(event.target.value)
+        if (event.target.value !=="") {
+            setErrorTitleContents("")
+        }
     }
     function onChangeTitleInput(event){
         setTitleInput(event.target.value)
+        if (event.target.value !=="") {
+            setErrorTitleInput("")
+        }
     }
 
 
@@ -51,15 +63,10 @@ export default function MyPage(){
         if (TitleInput === "") {
             setErrorTitleInput("내용을 작성해주세요")
         }
-// 모두 text가 입력되어 있다면 alert 띄우기.
         if (User !=="" && Password !=="" && TitleContents !=="" && TitleInput !=="" ) {
             alert("게시글이 등록되었습니다.")
         }
     }
-    // 2일차 느낀점.
-// 코드 재사용화 생각, 코드 깔끔하게 정리하기, State 연습
-// emotion 적용시키기
-
     return(
         <Box>
             <Title>게시물 등록</Title>
