@@ -11,6 +11,20 @@ import { UploadButton } from "../../../styles/emotion"
 import { SubmitButton } from "../../../styles/emotion"
 import { Error } from "../../../styles/emotion"
 
+import {gql, useMutation} from "@apollo/client"
+
+// 객체 : 타입
+// 함수
+const CREATE_BOARD = gql`
+    mutation createBoard($createBoardInput: CreateBoardInput!){
+            createBoard(createBoardInput: $createBoardInput){
+                _id
+                writer
+                title
+                contents
+            }
+    }
+`
 
 export default function MyPage(){
 // useState 연습하기.
@@ -24,6 +38,7 @@ export default function MyPage(){
     const [ErrorTitleContents, setErrorTitleContents] = useState("")
     const [ErrorTitleInput, setErrorTitleInput] = useState("")
  
+
     function onChangeUser(event) {
         setUser(event.target.value)
         if (event.target.value !=="") {
@@ -49,8 +64,10 @@ export default function MyPage(){
         }
     }
 
+    const[createBoard] = useMutation(CREATE_BOARD)
 
-    function SubmitButtonClick() {
+    const SubmitButtonClick = async(event) => {
+
         if (User === "") {
             setErrorUser("작성자가 입력되지 않았습니다.")
         }
@@ -64,6 +81,18 @@ export default function MyPage(){
             setErrorTitleInput("내용을 작성해주세요")
         }
         if (User !=="" && Password !=="" && TitleContents !=="" && TitleInput !=="" ) {
+            // 안쓴게 없을경우 API 호출
+            const result = await createBoard ({
+                variables:{
+                    createBoardInput: {
+                        writer: User,
+                        password: Password,
+                        title: TitleContents,
+                        contents: TitleInput
+                    }
+                }
+            })
+            console.log(result)
             alert("게시글이 등록되었습니다.")
         }
     }

@@ -4,13 +4,14 @@ import { useState } from "react"
 const CREATE_PRODUCT = gql`
     mutation createProduct(
         $seller: String,
-        $createProductInput: CreateProductInput!){
-        createProduct(
-            seller: $seller, 
-            createProductInput: $createProductInput){
-            _id
-            number
-            message
+        $createProductInput: CreateProductInput!
+        ){
+            createProduct(
+                seller: $seller, 
+                createProductInput: $createProductInput){
+                    _id
+                    number
+                    message
         }
     }
 `
