@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { AddressWrapper, Box, ButtonWrapper, Contents, ContentText, ImageWrapper, NameInput, OptionWrapper, PasswordInput, RadioButton, RadioLabel, Title2Input } from "../../../styles/emotion"
 import { Title } from "../../../styles/emotion"
 import { UserWrapper} from "../../../styles/emotion"
@@ -12,9 +11,9 @@ import { SubmitButton } from "../../../styles/emotion"
 import { Error } from "../../../styles/emotion"
 
 import {gql, useMutation} from "@apollo/client"
+import { useState } from "react"
+import { useRouter} from "next/router"
 
-// 객체 : 타입
-// 함수
 const CREATE_BOARD = gql`
     mutation createBoard($createBoardInput: CreateBoardInput!){
             createBoard(createBoardInput: $createBoardInput){
@@ -37,7 +36,9 @@ export default function MyPage(){
     const [ErrorPw, setErrorPw] = useState("")
     const [ErrorTitleContents, setErrorTitleContents] = useState("")
     const [ErrorTitleInput, setErrorTitleInput] = useState("")
- 
+
+    //  라우터 임폴트
+    const router = useRouter()
 
     function onChangeUser(event) {
         setUser(event.target.value)
@@ -66,8 +67,7 @@ export default function MyPage(){
 
     const[createBoard] = useMutation(CREATE_BOARD)
 
-    const SubmitButtonClick = async(event) => {
-
+    const SubmitButtonClick = async() => {
         if (User === "") {
             setErrorUser("작성자가 입력되지 않았습니다.")
         }
@@ -81,19 +81,24 @@ export default function MyPage(){
             setErrorTitleInput("내용을 작성해주세요")
         }
         if (User !=="" && Password !=="" && TitleContents !=="" && TitleInput !=="" ) {
-            // 안쓴게 없을경우 API 호출
-            const result = await createBoard ({
-                variables:{
-                    createBoardInput: {
-                        writer: User,
-                        password: Password,
-                        title: TitleContents,
-                        contents: TitleInput
+            try {
+                const result = await createBoard ({
+                    variables:{
+                        createBoardInput: {
+                            writer: User,
+                            password: Password,
+                            title: TitleContents,
+                            contents: TitleInput
+                        }       
                     }
-                }
-            })
-            console.log(result)
-            alert("게시글이 등록되었습니다.")
+                }) 
+
+                router.push(`/boarder/${result.data.createBoard._id}`)
+                
+            } catch (error) {
+                alert(error.message)
+            }
+
         }
     }
     return(

@@ -1,13 +1,13 @@
-import { ProfilePhoto, Rectangle } from "../../../styles/emotion2"
-import { Head } from "../../../styles/emotion2"
-import { HeadName } from "../../../styles/emotion2"
-import { Title } from "../../../styles/emotion2"
-import { TitleName } from "../../../styles/emotion2"
-import { Question } from "../../../styles/emotion2"
-import { Span } from "../../../styles/emotion2"
-import { QuestionTitle } from "../../../styles/emotion2"
-import { Navigation } from "../../../styles/emotion2"
-import { NavigationBtn } from "../../../styles/emotion2"
+import { ProfilePhoto, Rectangle } from "../../../../freeboard_frontend/styles/emotion2"
+import { Head } from "../../../../freeboard_frontend/styles/emotion2"
+import { HeadName } from "../../../../freeboard_frontend/styles/emotion2"
+import { Title } from "../../../../freeboard_frontend/styles/emotion2"
+import { TitleName } from "../../../../freeboard_frontend/styles/emotion2"
+import { Question } from "../../../../freeboard_frontend/styles/emotion2"
+import { Span } from "../../../../freeboard_frontend/styles/emotion2"
+import { QuestionTitle } from "../../../../freeboard_frontend/styles/emotion2"
+import { Navigation } from "../../../../freeboard_frontend/styles/emotion2"
+import { NavigationBtn } from "../../../../freeboard_frontend/styles/emotion2"
 
 export default function MyPage(){
     
