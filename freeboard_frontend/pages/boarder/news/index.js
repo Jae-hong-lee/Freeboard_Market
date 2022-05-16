@@ -1,15 +1,4 @@
-import { AddressWrapper, Box, ButtonWrapper, Contents, ContentText, ImageWrapper, NameInput, OptionWrapper, PasswordInput, RadioButton, RadioLabel, Title2Input } from "../../../styles/emotion"
-import { Title } from "../../../styles/emotion"
-import { UserWrapper} from "../../../styles/emotion"
-import { InputWrapper } from "../../../styles/emotion"
-import { Label } from "../../../styles/emotion"
-import { AddressBtn } from "../../../styles/emotion"
-import { AddressInput } from "../../../styles/emotion"
-import { Youtube } from "../../../styles/emotion"
-import { UploadButton } from "../../../styles/emotion"
-import { SubmitButton } from "../../../styles/emotion"
-import { Error } from "../../../styles/emotion"
-
+import * as S from '../../../styles/emotion'
 import {gql, useMutation} from "@apollo/client"
 import { useState } from "react"
 import { useRouter} from "next/router"
@@ -68,19 +57,20 @@ export default function MyPage(){
     const[createBoard] = useMutation(CREATE_BOARD)
 
     const SubmitButtonClick = async() => {
-        if (User === "") {
+
+        if (!User) {
             setErrorUser("작성자가 입력되지 않았습니다.")
         }
-        if (Password === "") {
+        if (!Password) {
             setErrorPw("비밀번호가 입력되지 않았습니다.")
         }
-        if (TitleContents === "") {
+        if (!TitleContents) {
             setErrorTitleContents("제목을 작성해주세요")
         }
-        if (TitleInput === "") {
+        if (!TitleInput) {
             setErrorTitleInput("내용을 작성해주세요")
         }
-        if (User !=="" && Password !=="" && TitleContents !=="" && TitleInput !=="" ) {
+        if (User && Password && TitleContents && TitleInput ) {
             try {
                 const result = await createBoard ({
                     variables:{
@@ -92,7 +82,7 @@ export default function MyPage(){
                         }       
                     }
                 }) 
-
+                alert("게시글이 등록되었습니다.")
                 router.push(`/boarder/${result.data.createBoard._id}`)
                 
             } catch (error) {
@@ -102,86 +92,86 @@ export default function MyPage(){
         }
     }
     return(
-        <Box>
-            <Title>게시물 등록</Title>
-            <UserWrapper>
-                <InputWrapper>
-                    <Label>작성자</Label>
-                    <NameInput 
+        <S.Box>
+            <S.Title>게시물 등록</S.Title>
+            <S.UserWrapper>
+                <S.InputWrapper>
+                    <S.Label>작성자</S.Label>
+                    <S.NameInput 
                         type="text" 
                         placeholder="이름을 작성하시오." 
                         onChange={onChangeUser}
                     />
-                    <Error>{ErrorUser}</Error>
-                </InputWrapper>
-                <InputWrapper>
-                    <Label>비밀번호</Label>
-                    <PasswordInput 
+                    <S.Error>{ErrorUser}</S.Error>
+                </S.InputWrapper>
+                <S.InputWrapper>
+                    <S.Label>비밀번호</S.Label>
+                    <S.PasswordInput 
                         type="password" 
                         placeholder="비밀번호를 입력해주세요" 
                         onChange={onChangePw}
                     />
 
-                    <Error>{ErrorPw}</Error>
-                </InputWrapper>
-            </UserWrapper>
+                    <S.Error>{ErrorPw}</S.Error>
+                </S.InputWrapper>
+            </S.UserWrapper>
 
-            <InputWrapper>
-                <Label>제목</Label>
-                <Contents 
+            <S.InputWrapper>
+                <S.Label>제목</S.Label>
+                <S.Contents 
                     type="text"
                     placeholder="제목을 작성해주세요"
                     onChange={onChangeTitleContents} 
                 />
-                <Error>{ErrorTitleContents}</Error>
-            </InputWrapper>
+                <S.Error>{ErrorTitleContents}</S.Error>
+            </S.InputWrapper>
 
-            <InputWrapper>
-                <Label>내용</Label>
-                <ContentText 
+            <S.InputWrapper>
+                <S.Label>내용</S.Label>
+                <S.ContentText 
                     placeholder="내용을 작성해주세요" 
                     onChange={onChangeTitleInput}
                 />
-                <Error>{ErrorTitleInput}</Error>
-            </InputWrapper>
+                <S.Error>{ErrorTitleInput}</S.Error>
+            </S.InputWrapper>
 
-            <InputWrapper>
-                <Label>주소</Label>
-                <AddressWrapper>
-                    <AddressInput 
+            <S.InputWrapper>
+                <S.Label>주소</S.Label>
+                <S.AddressWrapper>
+                    <S.AddressInput 
                         placeholder="07250" 
                         readOnly
                     />
-                    <AddressBtn>우편번호 검색</AddressBtn>
-                </AddressWrapper>
-                <Title2Input readOnly></Title2Input>
-                <Title2Input></Title2Input>
-            </InputWrapper>
+                    <S.AddressBtn>우편번호 검색</S.AddressBtn>
+                </S.AddressWrapper>
+                <S.Title2Input readOnly></S.Title2Input>
+                <S.Title2Input></S.Title2Input>
+            </S.InputWrapper>
 
-            <InputWrapper>
-                <Label>유튜브</Label>
-                <Youtube placeholder="링크를 복사해주세요."></Youtube>
-            </InputWrapper>
+            <S.InputWrapper>
+                <S.Label>유튜브</S.Label>
+                <S.Youtube placeholder="링크를 복사해주세요."></S.Youtube>
+            </S.InputWrapper>
 
-            <ImageWrapper>
-                <Label>사진첨부</Label>
-                <UploadButton>+</UploadButton>
-                <UploadButton>+</UploadButton>
-                <UploadButton>+</UploadButton>
-            </ImageWrapper>
+            <S.ImageWrapper>
+                <S.Label>사진첨부</S.Label>
+                <S.UploadButton>+</S.UploadButton>
+                <S.UploadButton>+</S.UploadButton>
+                <S.UploadButton>+</S.UploadButton>
+            </S.ImageWrapper>
             
-            <OptionWrapper>
-                <Label>메인설정</Label>
-                <RadioButton type="radio" id="youtube" name="optin"></RadioButton>
-                <RadioLabel>유튜브</RadioLabel>
-                <RadioButton type="radio" id="image" name="optin"></RadioButton>
-                <RadioLabel>사진</RadioLabel>
-            </OptionWrapper>
+            <S.OptionWrapper>
+                <S.Label>메인설정</S.Label>
+                <S.RadioButton type="radio" id="youtube" name="optin"></S.RadioButton>
+                <S.RadioLabel>유튜브</S.RadioLabel>
+                <S.RadioButton type="radio" id="image" name="optin"></S.RadioButton>
+                <S.RadioLabel>사진</S.RadioLabel>
+            </S.OptionWrapper>
 
-            <ButtonWrapper>
-                <SubmitButton onClick={SubmitButtonClick}>등록하기</SubmitButton>
-            </ButtonWrapper>
-        </Box>
+            <S.ButtonWrapper>
+                <S.SubmitButton onClick={SubmitButtonClick}>등록하기</S.SubmitButton>
+            </S.ButtonWrapper>
+        </S.Box>
         
     )
 }

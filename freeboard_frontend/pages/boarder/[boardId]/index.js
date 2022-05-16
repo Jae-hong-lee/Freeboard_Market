@@ -21,14 +21,11 @@ export default function DetailPage(){
   const router = useRouter()
 
   const { data } = useQuery(FETCH_BOARD, {
-    variables:{boardId: `${router.query.details}`}
+    variables:{boardId: `${router.query.boardId}`}
   })
   
-  let Datetime =new Date(data? data :"loading")
-  console.log(Datetime)
 
   return(
- 
       // Wrapper
       <DS.Wrapper>
           {/* WriterRapper */}
@@ -38,8 +35,8 @@ export default function DetailPage(){
               <DS.ProfileTitle>
                 <DS.ProfileImg src="../Detailimage/Profile.png"></DS.ProfileImg>
                 <DS.ProfileText>
-                  <DS.ProfileName>{data?data.fetchBoard.writer: "loading.."}</DS.ProfileName>
-                  <DS.ProfileDate>Date:{data?data.fetchBoard.createAt: "loading.."}</DS.ProfileDate>
+                  <DS.ProfileName>{data?data.fetchBoard?.writer: "loading.."}</DS.ProfileName>
+                  <DS.ProfileDate>Date:{data?data.fetchBoard?.createdAt: "loading.."}</DS.ProfileDate>
                 </DS.ProfileText>
               </DS.ProfileTitle>
             </DS.WriterProfile>
@@ -54,7 +51,7 @@ export default function DetailPage(){
           <DS.DivideLine></DS.DivideLine>
           {/*Title */}
           <DS.Title>
-            <DS.TitleText>{data?data.fetchBoard.title: "loading.."}</DS.TitleText>
+            <DS.TitleText>{data?data.fetchBoard?.title: "loading.."}</DS.TitleText>
           </DS.Title>
 
           {/* IMG */}
@@ -62,7 +59,7 @@ export default function DetailPage(){
 
           {/* contents */}
           <DS.Contents>
-            {data?data.fetchBoard.contents: "loading.."}
+            {data?data.fetchBoard?.contents: "loading.."}
           </DS.Contents>
 
           {/* Youtube */}
@@ -72,11 +69,11 @@ export default function DetailPage(){
           <DS.LikeWrapper>
             <DS.LikeContent>
               <DS.LikeImg src="../Detailimage/Like.png"></DS.LikeImg>
-              <DS.LikeCount>{data?data.fetchBoard.likeCount: "loading.."}</DS.LikeCount>
+              <DS.LikeCount>{data?data.fetchBoard?.likeCount: "loading.."}</DS.LikeCount>
             </DS.LikeContent>
             <DS.DLlikeContent>
               <DS.DlikeImg src="../Detailimage/Dlike.png"></DS.DlikeImg>
-              <DS.DlikeCount>{data?data.fetchBoard.dislikeCount: "loading.."}</DS.DlikeCount>
+              <DS.DlikeCount>{data?data.fetchBoard?.dislikeCount: "loading.."}</DS.DlikeCount>
             </DS.DLlikeContent>
           </DS.LikeWrapper>
 
