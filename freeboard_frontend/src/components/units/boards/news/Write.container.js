@@ -3,10 +3,10 @@ import { useState } from "react"
 import { useRouter} from "next/router"
 
 import { CREATE_BOARD } from './Write.create.board'
-import WriteUI from './Write.presenter'
+import WriteUI from '../news/Write.presenter'
 
 
-export default function MyPage(){
+export default function CreateBoardPage(){
     const [User, setUser] = useState("")
     const [Password, setPassword] = useState("")
     const [TitleContents, setTitleContens] = useState("")
@@ -92,5 +92,5 @@ export default function MyPage(){
       ErrorTitleContents = {ErrorTitleContents}
       ErrorTitleInput = {ErrorTitleInput}
 
-      />
+      />)
 }

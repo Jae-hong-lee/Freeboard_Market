@@ -1,6 +1,8 @@
 import * as S from './Write.styles'
 
 export default function WriteUI(props) {
+  return(
+
   
 <S.Box>
   <S.Title>게시물 등록</S.Title>
@@ -82,4 +84,4 @@ export default function WriteUI(props) {
     <S.SubmitButton onClick={props.SubmitButtonClick}>등록하기</S.SubmitButton>
   </S.ButtonWrapper>
 </S.Box>
-}
+  )}
