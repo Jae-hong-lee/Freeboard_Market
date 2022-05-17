@@ -1,0 +1,44 @@
+// 리렌더링돼도 새로 안만들어짐
+// 고정된 값 같은 경우 바깥에 위치
+// 스테이츠가 새롭게 저장될 경우 함수가 다시 만들어질때 값도 새롭게 만들어지게 되어서 (리랜더)
+// 고정된값은 그것의 영향을 받지 않기 때문에 바깥에 위치한다.
+let FRUITS = [
+  { number: 1, title: "레드향" }, // <div>1 레드향</div>
+  { number: 2, title: "샤인머스켓" }, // <div>2 샤인머스켓</div>
+  { number: 3, title: "산청딸기" },
+  { number: 4, title: "한라봉" },
+  { number: 5, title: "사과" },
+  { number: 6, title: "애플망고" },
+  { number: 7, title: "딸기" },
+  { number: 8, title: "천혜향" },
+  { number: 9, title: "과일선물세트" },
+  { number: 10, title: "귤" },
+];
+
+FRUITS = FRUITS.filter(el => el.number %2 === 0 )
+
+
+export default function MapFruitsPage(){
+  // const aaa = [<div>1 레드향</div>, <div>2 샤인머스켓</div>, <div>3 산청딸기</div>]
+
+  // const bbb = ["나의레드향", "나의샤인머스켓", "나의산청딸기"].map((el) => (<div>{el}</div>))
+
+  // const ccc = FRUITS.map((el) => (<div>{el.number} {el.title}</div>))
+  // 맵 함수 활용하기.
+
+  return (
+    // 최상위 태그에 key값 넣기
+      <div>
+        {/* 일반 문자열이 아닌 양쪽에 <div> 가 붙어있음. */}
+        {/* {aaa} */}
+        {/* {bbb} */}
+        {/* {ccc} */}
+        {/* return 에 바로 적용해도 동일하게 작동 */}
+          {FRUITS.map((el) => (
+            <div key={el.number}>
+              <div>{el.number} {el.title}</div>
+            </div>
+          ))}
+      </div>
+  )
+}

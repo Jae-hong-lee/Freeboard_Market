@@ -5,7 +5,7 @@ import { useRouter} from "next/router"
 import { CREATE_BOARD } from './Write.create.board'
 import WriteUI from '../news/Write.presenter'
 
-
+// JS
 export default function CreateBoardPage(){
     const [User, setUser] = useState("")
     const [Password, setPassword] = useState("")
@@ -42,10 +42,13 @@ export default function CreateBoardPage(){
         if (event.target.value !=="") {
             setErrorTitleInput("")
         }
+        
     }
 
     const[createBoard] = useMutation(CREATE_BOARD)
-
+    
+    
+    // 변수지정
     const btnDisabled = !(User&& Password && TitleContents && TitleInput);
     
     const SubmitButtonClick = async() => {

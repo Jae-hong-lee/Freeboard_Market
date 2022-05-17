@@ -3,7 +3,7 @@ import * as S from './Write.styles'
 export default function WriteUI(props) {
   return(
 
-  
+  // JSX
 <S.Box>
   <S.Title>게시물 등록</S.Title>
     <S.UserWrapper>
