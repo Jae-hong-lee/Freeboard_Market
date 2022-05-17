@@ -46,6 +46,8 @@ export default function CreateBoardPage(){
 
     const[createBoard] = useMutation(CREATE_BOARD)
 
+    const btnDisabled = !(User&& Password && TitleContents && TitleInput);
+    
     const SubmitButtonClick = async() => {
         if (!User) {
             setErrorUser("작성자가 입력되지 않았습니다.")
@@ -91,6 +93,6 @@ export default function CreateBoardPage(){
       ErrorPw = {ErrorPw}
       ErrorTitleContents = {ErrorTitleContents}
       ErrorTitleInput = {ErrorTitleInput}
-
+      btnDisabled = {btnDisabled}
       />)
 }

@@ -81,7 +81,10 @@ export default function WriteUI(props) {
   </S.OptionWrapper>
 
   <S.ButtonWrapper>
-    <S.SubmitButton onClick={props.SubmitButtonClick}>등록하기</S.SubmitButton>
+    {/* 이자리에 따라 true false 
+    컨테이너에서 true false 판별하고 props넘겨서 삽입
+    */}
+    <S.SubmitButton disabled={props.btnDisabled} onClick={props.SubmitButtonClick}>등록하기</S.SubmitButton>
   </S.ButtonWrapper>
 </S.Box>
   )}
