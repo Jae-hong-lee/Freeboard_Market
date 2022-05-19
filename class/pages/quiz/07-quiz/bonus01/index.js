@@ -9,7 +9,9 @@ const classmates = [
 //     classmates[i].candy = 10;
 //   }
 // }
-classmates.filter(el => el.school ==="토끼초등학교").map((ele) => {ele.candy = '10개', ele.name = ele.name+" 어린이"})
+classmates
+  .filter(el => el.school ==="토끼초등학교")
+  .map((ele) => {ele.candy = '10개', ele.name = ele.name+" 어린이"})
 
 console.log(classmates)
 
