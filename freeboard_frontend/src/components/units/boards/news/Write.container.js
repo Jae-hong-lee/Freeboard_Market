@@ -2,11 +2,12 @@ import { useMutation} from "@apollo/client"
 import { useState } from "react"
 import { useRouter} from "next/router"
 
+import {UPDATE_BOARD} from './Write.create.board'
 import { CREATE_BOARD } from './Write.create.board'
 import WriteUI from '../news/Write.presenter'
 
 // JS
-export default function CreateBoardPage(){
+export default function CreateBoardPage(props){
     const [User, setUser] = useState("")
     const [Password, setPassword] = useState("")
     const [TitleContents, setTitleContens] = useState("")
@@ -18,11 +19,17 @@ export default function CreateBoardPage(){
     const [ErrorTitleInput, setErrorTitleInput] = useState("")
 
     const router = useRouter()
-
+    const [isActive, setIsActive]  = useState(false)
+    
     function onChangeUser(event) {
         setUser(event.target.value)
         if (event.target.value !=="") {
             setErrorUser("")
+        }
+        if (event.target.value &&Password &&TitleContents &&TitleInput ){
+            setIsActive(true)
+        }else {
+            setIsActive(false)
         }
     }
     function onChangePw(event) {
@@ -30,11 +37,21 @@ export default function CreateBoardPage(){
         if (event.target.value !=="") {
             setErrorPw("")
         }
+        if (User && event.target.value &&TitleContents &&TitleInput ){
+            setIsActive(true)
+        }else {
+            setIsActive(false)
+        }
     }
     function onChangeTitleContents(event) {
         setTitleContens(event.target.value)
         if (event.target.value !=="") {
             setErrorTitleContents("")
+        }
+        if (User && Password && event.target.value && TitleInput ){
+            setIsActive(true)
+        }else {
+            setIsActive(false)
         }
     }
     function onChangeTitleInput(event){
@@ -42,14 +59,15 @@ export default function CreateBoardPage(){
         if (event.target.value !=="") {
             setErrorTitleInput("")
         }
-        
+        if (User && Password && TitleContents && event.target.value ){
+            setIsActive(true)
+        }else {
+            setIsActive(false)
+        }
     }
 
     const[createBoard] = useMutation(CREATE_BOARD)
     
-    
-    // 변수지정
-    const btnDisabled = !(User&& Password && TitleContents && TitleInput);
     
     const SubmitButtonClick = async() => {
         if (!User) {
@@ -85,9 +103,37 @@ export default function CreateBoardPage(){
 
         }
     }
+
+    const[updateBoard] = useMutation(UPDATE_BOARD)
+    const Editvariables = {}
+    if (TitleContents) Editvariables.title = TitleContents
+    if (TitleInput) Editvariables.contents = TitleInput
+
+    const UpdateButtonClick = async() => {
+        try {
+            await updateBoard({
+                variables: {
+                    updateBoardInput: Editvariables,
+                    password: Password,
+                    boardId:router.query.boardId
+                }
+            })
+            alert("게시물수정이 완료되었습니다!")
+        } catch (error) {
+            alert(error.message)
+        }
+        router.push(`/boarder/${router.query.boardId}`)
+
+    }
+
+
+
     return(
       <WriteUI
       SubmitButtonClick = {SubmitButtonClick}
+      UpdateButtonClick = {UpdateButtonClick}
+      
+      //   수정버튼 추가
       onChangeTitleInput = {onChangeTitleInput}
       onChangeTitleContents = {onChangeTitleContents}
       onChangePw = {onChangePw}
@@ -96,6 +142,10 @@ export default function CreateBoardPage(){
       ErrorPw = {ErrorPw}
       ErrorTitleContents = {ErrorTitleContents}
       ErrorTitleInput = {ErrorTitleInput}
-      btnDisabled = {btnDisabled}
+        
+      
+      data = {props.data}
+      isEdit = {props.isEdit}
+      isActive = {isActive}
       />)
 }

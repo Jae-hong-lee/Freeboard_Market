@@ -67,7 +67,7 @@ export default function ListsUI(props){
             <LS.LikeWrapper_count>조아요 수</LS.LikeWrapper_count>
           </LS.LikeWrapper>
         </LS.BestBoardcontent>
-      </LS.BestBoards>
+      </LS.BestBoards> 
 
       {/* 검색창 */}
       <LS.SearchWrapper>

@@ -1,18 +1,21 @@
 import * as S from './Write.styles'
 
 export default function WriteUI(props) {
+
   return(
 
   // JSX
 <S.Box>
-  <S.Title>게시물 등록</S.Title>
+  <S.Title>게시물 {props.isEdit? "수정":"등록"}</S.Title>
     <S.UserWrapper>
       <S.InputWrapper>
         <S.Label>작성자</S.Label>
         <S.NameInput 
             type="text" 
             placeholder="이름을 작성하시오." 
+            defaultValue={props.data?.fetchBoard.writer}
             onChange={props.onChangeUser}
+            disabled = {props.isEdit}
         />
         <S.Error>{props.ErrorUser}</S.Error>
     </S.InputWrapper>
@@ -34,6 +37,7 @@ export default function WriteUI(props) {
         type="text"
         placeholder="제목을 작성해주세요"
         onChange={props.onChangeTitleContents} 
+        defaultValue={props.data?.fetchBoard.title}
     />
     <S.Error>{props.ErrorTitleContents}</S.Error>
 </S.InputWrapper>
@@ -43,6 +47,7 @@ export default function WriteUI(props) {
     <S.ContentText 
         placeholder="내용을 작성해주세요" 
         onChange={props.onChangeTitleInput}
+        defaultValue={props.data?.fetchBoard.contents}
     />
     <S.Error>{props.ErrorTitleInput}</S.Error>
 </S.InputWrapper>
@@ -84,7 +89,12 @@ export default function WriteUI(props) {
     {/* 이자리에 따라 true false 
     컨테이너에서 true false 판별하고 props넘겨서 삽입
     */}
-    <S.SubmitButton disabled={props.btnDisabled} onClick={props.SubmitButtonClick}>등록하기</S.SubmitButton>
+    <S.SubmitButton 
+      onClick = {props.isEdit ? props.UpdateButtonClick : props.SubmitButtonClick}
+      isActive = {props.isEdit ? true : props.isActive}
+      >
+        {props.isEdit ? "수정": "등록"}하기
+    </S.SubmitButton>
   </S.ButtonWrapper>
 </S.Box>
   )}

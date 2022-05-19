@@ -73,7 +73,7 @@ export const LikeWrapper = styled.div`
 `;
 
 export const LikeWrapper_img = styled.div`
-    width:20px;
+  width:20px;
   height:20px;
   border-radius:50%;
   background-color:yellow;

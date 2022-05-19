@@ -1,10 +1,13 @@
 import styled from '@emotion/styled'
 
-export const Wrapper = styled.div`
+
+export const Box = styled.div`
   width: 1200px;
-  /* height: 1847px; */
-  border: 1px solid black;
   margin: 100px;
+`
+export const Wrapper = styled.div`
+
+  border: 1px solid black;
   padding-top: 80px;
   padding-bottom: 100px;
   padding-left: 102px;
@@ -14,7 +17,7 @@ export const Wrapper = styled.div`
   align-items: center;
   border: none;
   box-shadow: 0px 0px 10px gray;
-
+  margin-bottom:40px;
   /* background-color: #FFBEFF; */
 `;
 // Writer
@@ -133,7 +136,10 @@ export const LikeContent = styled.div`
   display:flex;
   flex-direction: column;
   margin-right:20px;
-`
+  width:50px;
+  height:50px;
+
+`;
 export const LikeImg = styled.img`
   width: 20px;
   height: 20px;
@@ -146,6 +152,7 @@ export const DLlikeContent = styled.div`
   display:flex;
   flex-direction: column;
   margin-left:20px;
+
 `
 export const DlikeImg = styled.img`
   width: 20px;
@@ -153,4 +160,24 @@ export const DlikeImg = styled.img`
 `
 export const DlikeCount = styled.span`
   font-size: 18px;
+`
+
+// ButtonList
+export const ButtonWrapper = styled.div`
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  /* background-color:green; */
+`
+
+export const Button = styled.button`
+  width:180px;
+  height: 45px;
+  border-radius:50%;
+  text-align:center;
+  margin: 0px 12px;
+  background-color: #DDDDDD98;
+  cursor: pointer;
+
 `

@@ -2,5 +2,15 @@ import DetailBoardPage from "../../../src/components/units/boards/details/detail
 
 
 export default function DetailPage() {
-  return <DetailBoardPage />
+
+
+  return(
+
+    
+      <DetailBoardPage />
+     
+
+    )
+    
+  
 }
