@@ -67,7 +67,7 @@ export const TitleInput = styled.input`
     height: 52px;
 `
 // 내용
-export const ContentText = styled.input`
+export const ContentText = styled.textarea`
         /* 패딩주기 */
     width: 996px;
     height: 480px;
