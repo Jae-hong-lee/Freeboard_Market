@@ -1,14 +1,10 @@
 // 자릿수 더하기
-function solution(n)
-{
-    let num = 0
-    let answer = String(n).split('')
-    num = answer.reduce((acc,cur) => acc+ Number(cur),0)
-    return num;
+function solution(n) {
+  let num = 0;
+  let answer = String(n).split("");
+  num = answer.reduce((acc, cur) => acc + Number(cur), 0);
+  return num;
 }
-
-
-
 
 // ----
 // String(123), toString(123)의 차이점.
@@ -16,13 +12,11 @@ function solution(n)
 // toString은 변수 할당이 꼭 있어야지 쓸 수 있는 메서드
 // toString : MDN (https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/toString)
 
-
-function solution(n)
-{
-  n = String(n) 
-  let answer = 0
+function solution(n) {
+  n = String(n);
+  let answer = 0;
   for (let i = 0; i < n.length; i++) {
-    answer += Number(n[i])
+    answer += Number(n[i]);
   }
 }
 

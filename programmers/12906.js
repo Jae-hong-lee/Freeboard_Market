@@ -11,27 +11,21 @@
 //       }
 //     }
 
-   
-    
 //     return answer;
 // }
 
-
-
-function solution(arr)
-{
-    var answer = [];
-    answer.push(arr[0])
-    // arr배열의 각각의 숫자를 가져오는 반복문
-    for (let i = 1; i < arr.length; i++) {
-      if (answer[answer.length-1] != arr[i]) {
-        answer.push(arr[i])
-      } 
+function solution(arr) {
+  var answer = [];
+  answer.push(arr[0]);
+  // arr배열의 각각의 숫자를 가져오는 반복문
+  for (let i = 1; i < arr.length; i++) {
+    if (answer[answer.length - 1] != arr[i]) {
+      answer.push(arr[i]);
     }
-    return answer;
+  }
+  return answer;
 }
-solution([1,1,3,3,0,1,1])
-
+solution([1, 1, 3, 3, 0, 1, 1]);
 
 // null 생각.
 // function solution(arr){
@@ -39,9 +33,9 @@ solution([1,1,3,3,0,1,1])
 //   answer.push(arr[0])
 //   arr.forEach(el,i => {
 //     if (el === answer[answer.length-1]) {
-      
+
 //     }
-    
+
 //   });
 // }
 

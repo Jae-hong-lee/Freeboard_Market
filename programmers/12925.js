@@ -2,8 +2,7 @@
 
 function solution(s) {
   var answer = 0;
-  
-  answer = Number(s)
+
+  answer = Number(s);
   return answer;
 }
-
