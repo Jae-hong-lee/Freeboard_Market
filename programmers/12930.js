@@ -24,3 +24,42 @@ function solution(s) {
   }
   return answer.substr(0, answer.length - 1);
 }
+// -------------------------------------------
+// Mento
+// 공백을 만나면 인덱스 0으로 초기화
+// idx를 무조건 증가시키면 안댐 -> 공백 만나면 초기화, 아니라면 idx++
+function solution(s) {
+  let answer = "";
+  let idx = 0;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === " ") {
+      answer += " ";
+      idx = 0;
+    } else {
+      answer += idx % 2 === 0 ? s[i].toUpperCase() : s[i].toLowerCase();
+      // idx가 짝수라면 대문자, 아니라면 소문자 삼항연산자.
+      idx++;
+    }
+  }
+  return answer;
+}
+solution("try hello world");
+
+// 메서드
+// 각문자열을 공백으로 쪼개고 단어를 또 쪼개서 배열을 만들고 map으로 한단어한단어 돌린다
+// 삼항연산자로 나눠지면 대문자 아니라면 소문자
+// 배열로 쪼개져 있는 것들을 join을 통해 문자열로 바꾸는데 두번 쪼갯으니까 두번 합침
+function solution(s) {
+  const answer = s
+    .split(" ")
+    .map((word) =>
+      word
+        .split("")
+        .map((letter, i) => {
+          return i % 2 === 0 ? letter.toUpperCase() : letter.toLowerCase();
+        })
+        .join("")
+    )
+    .join(" ");
+  return answer;
+}
