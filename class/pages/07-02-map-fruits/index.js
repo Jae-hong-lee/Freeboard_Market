@@ -14,8 +14,8 @@ const FRUITS = [
   { number: 9, title: "과일선물세트" },
   { number: 10, title: "귤" },
 ];
-
-export default function MapFruitsPage(){
+console.log(FRUITS);
+export default function MapFruitsPage() {
   // const aaa = [<div>1 레드향</div>, <div>2 샤인머스켓</div>, <div>3 산청딸기</div>]
 
   // const bbb = ["나의레드향", "나의샤인머스켓", "나의산청딸기"].map((el) => (<div>{el}</div>))
@@ -24,15 +24,17 @@ export default function MapFruitsPage(){
   // 맵 함수 활용하기.
 
   return (
-      <div>
-        {/* 일반 문자열이 아닌 양쪽에 <div> 가 붙어있음. */}
-        {/* {aaa} */}
-        {/* {bbb} */}
-        {/* {ccc} */}
-        {/* return 에 바로 적용해도 동일하게 작동 */}
-          {FRUITS.map((el) => (
-              <div>{el.number} {el.title}</div>
-          ))}
-      </div>
-  )
+    <div>
+      {/* 일반 문자열이 아닌 양쪽에 <div> 가 붙어있음. */}
+      {/* {aaa} */}
+      {/* {bbb} */}
+      {/* {ccc} */}
+      {/* return 에 바로 적용해도 동일하게 작동 */}
+      {/* {FRUITS.map((el) => (
+        <div>
+          {el.number} {el.title}
+        </div>
+      ))} */}
+    </div>
+  );
 }
