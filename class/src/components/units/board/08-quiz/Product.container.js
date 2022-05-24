@@ -40,7 +40,7 @@ export default function ProductWrite(props) {
         },
       },
     });
-    console.log("dasdas");
+    console.log(result);
     router.push(`/quiz/08_quiz/${router.query.id}`);
   };
 
