@@ -1,5 +1,7 @@
 import * as DS from "./detail.styles";
 import { getDate } from "../../../../commons/libraries/utils";
+import ReactPlayer from "react-player";
+import { Tooltip } from "antd";
 export default function DetailUI(props) {
   return (
     // <S.writer> 작성자: {props.data?.fetchBoard.writer}</S.writer>
@@ -23,13 +25,15 @@ export default function DetailUI(props) {
 
           <DS.WrapperLink>
             <DS.LinkImage src="../Detailimage/Link.png"></DS.LinkImage>
-            <DS.LinkGPS src="../Detailimage/GPS.png"></DS.LinkGPS>
+            <Tooltip title={props.data?.fetchBoard.boardAddress.address}>
+              <DS.LinkGPS src="../Detailimage/GPS.png"></DS.LinkGPS>
+            </Tooltip>
           </DS.WrapperLink>
         </DS.WriterRapper>
 
         {/* Line */}
         <DS.DivideLine></DS.DivideLine>
-        {/*Title */}
+        {/* Title */}
         <DS.Title>
           <DS.TitleText>{props.data?.fetchBoard.title}</DS.TitleText>
         </DS.Title>
@@ -41,16 +45,24 @@ export default function DetailUI(props) {
         <DS.Contents>{props.data?.fetchBoard.contents}</DS.Contents>
 
         {/* Youtube */}
-        <DS.ContentYoutube></DS.ContentYoutube>
+        <DS.ContentYoutube>
+          <ReactPlayer url={props.data?.fetchBoard.youtubeUrl} />
+        </DS.ContentYoutube>
 
         {/* like dlike */}
         <DS.LikeWrapper>
           <DS.LikeContent>
-            <DS.LikeImg src="../Detailimage/Like.png"></DS.LikeImg>
+            <DS.LikeImg
+              src="../Detailimage/Like.png"
+              onClick={props.OnClickLikeCount}
+            ></DS.LikeImg>
             <DS.LikeCount>{props.data?.fetchBoard.likeCount}</DS.LikeCount>
           </DS.LikeContent>
           <DS.DLlikeContent>
-            <DS.DlikeImg src="../Detailimage/Dlike.png"></DS.DlikeImg>
+            <DS.DlikeImg
+              src="../Detailimage/Dlike.png"
+              onClick={props.OnClickDLikeCount}
+            ></DS.DlikeImg>
             <DS.DlikeCount>{props.data?.fetchBoard.dislikeCount}</DS.DlikeCount>
           </DS.DLlikeContent>
         </DS.LikeWrapper>

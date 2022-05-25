@@ -10,7 +10,15 @@ export default function BoardsListsPage() {
   const onClickMoveCreateBoard = () => {
     router.push(`/boarder/news`);
   };
+
+  const onClickTitle = (event) => {
+    router.push(`/boarder/${event.target.id}`);
+  };
   return (
-    <ListsUI data={data} onClickMoveCreateBoard={onClickMoveCreateBoard} />
+    <ListsUI
+      data={data}
+      onClickMoveCreateBoard={onClickMoveCreateBoard}
+      onClickTitle={onClickTitle}
+    />
   );
 }

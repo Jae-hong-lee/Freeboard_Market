@@ -21,7 +21,7 @@ export const BoardsWrapper = styled.div`
   margin: 50px;
 `;
 
-export const BoardsList = styled.table`
+export const BoardsList = styled.div`
   width: 100%;
   border: 1px solid gray;
 `;
@@ -40,13 +40,13 @@ export const ColumnNumber = styled.div`
 `;
 
 export const ColumnTitle = styled.div`
-  width: 15%;
+  width: 70%;
   text-align: center;
   /* background-color: cornflowerblue; */
   margin: 10px;
 `;
 export const ColumnWriter = styled.div`
-  width: 70%;
+  width: 10%;
   text-align: center;
   /* background-color: blueviolet; */
   margin: 10px;
@@ -67,5 +67,9 @@ export const ColumnDisLike = styled.div`
 export const MoveWritecontainer = styled.button`
   width: 150px;
   height: 50px;
-  border-radius: 50%;
+  border-radius: 25px;
+  background-color: white;
+  :hover {
+    background-color: #2860e1;
+  }
 `;

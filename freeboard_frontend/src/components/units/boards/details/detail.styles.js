@@ -114,13 +114,9 @@ export const Contents = styled.span`
 
 // Youtube
 export const ContentYoutube = styled.div`
-  width: 486px;
-  height: 240px;
-  left: 729px;
-  top: 1760px;
-  background-color: gray;
   margin-bottom: 160px;
 `;
+
 // Like Wrapper
 export const LikeWrapper = styled.div`
   display: flex;
@@ -167,9 +163,13 @@ export const ButtonWrapper = styled.div`
 export const Button = styled.button`
   width: 180px;
   height: 45px;
-  border-radius: 50%;
+  border-radius: 20px;
   text-align: center;
   margin: 0px 12px;
-  background-color: #dddddd98;
+  background-color: white;
   cursor: pointer;
+  :hover {
+    background-color: #2860e1;
+    border-color: white;
+  }
 `;

@@ -18,7 +18,9 @@ export default function ListsUI(props) {
           {props.data?.fetchBoards.map((el, index) => (
             <LS.BoardsListLine key={el._id}>
               <LS.ColumnNumber>{index + 1}</LS.ColumnNumber>
-              <LS.ColumnTitle>{el.title}</LS.ColumnTitle>
+              <LS.ColumnTitle onClick={props.onClickTitle} id={el._id}>
+                {el.title}
+              </LS.ColumnTitle>
               <LS.ColumnWriter>{el.writer}</LS.ColumnWriter>
               <LS.ColumnLike>{el.likeCount}</LS.ColumnLike>
               <LS.ColumnDisLike>{el.dislikeCount}</LS.ColumnDisLike>
