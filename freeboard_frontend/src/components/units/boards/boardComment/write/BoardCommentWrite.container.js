@@ -73,6 +73,7 @@ export default function BoardCommentWrite() {
           ], // reFetch
         });
         // location.reload(); // 페이지 새로고침
+        console.log(result);
         Modal.success({
           content: "댓글이 등록되었습니다!!",
         });
