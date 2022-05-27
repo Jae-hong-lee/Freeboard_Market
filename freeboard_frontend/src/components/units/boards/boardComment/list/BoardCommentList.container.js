@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import {
   FETCH_BOARDS_COMMENTS,
   DELETE_COMMENTS,
+  FETCH_BOARDS,
 } from "./BoardCommentList.quire";
 import { useRouter } from "next/router";
 import BoardCommentListUI from "./BoardCommentList.presenter";
@@ -12,7 +13,7 @@ export default function BoardCommentList() {
   const router = useRouter();
   // console.log(router.query.boardId);
 
-  const { data } = useQuery(FETCH_BOARDS_COMMENTS, {
+  const { data, fetchMore } = useQuery(FETCH_BOARDS_COMMENTS, {
     variables: {
       boardId: router.query.boardId,
     },
@@ -63,6 +64,27 @@ export default function BoardCommentList() {
   const onCancelclick = () => {
     setIsModalVisible(false);
   };
+
+  const loadFunc = () => {
+    if (!data) return;
+
+    fetchMore({
+      variables: { page: Math.ceil(data.fetchBoardComments.length / 10) + 1 },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult.fetchBoardComments)
+          return {
+            fetchBoardComments: [...prev.fetchBoardComments],
+          };
+
+        return {
+          fetchBoardComments: [
+            ...prev.fetchBoardComments,
+            ...fetchMoreResult.fetchBoardComments,
+          ],
+        };
+      },
+    });
+  };
   return (
     <BoardCommentListUI
       data={data}
@@ -72,6 +94,7 @@ export default function BoardCommentList() {
       isModalVisible={isModalVisible}
       onOKclick={onOKclick}
       onCancelclick={onCancelclick}
+      loadFunc={loadFunc}
     />
   );
 }

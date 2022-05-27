@@ -12,6 +12,9 @@ export default function CreateBoardPage(props) {
   const [TitleContents, setTitleContens] = useState("");
   const [TitleInput, setTitleInput] = useState("");
   const [youtubeUrl, setYoutubeUrl] = useState("");
+  const [addressInput, setAddressInput] = useState("");
+  const [adreeZipcode, setAddressZipcode] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
 
   const [ErrorUser, setErrorUser] = useState("");
   const [ErrorPw, setErrorPw] = useState("");
@@ -147,16 +150,13 @@ export default function CreateBoardPage(props) {
     setIsModalVisible((perv) => !perv);
   };
 
-  const [addressInput, setAddressInput] = useState("");
-  const [adreeZipcode, setAddressZipcode] = useState("");
-  const [addressDetail, setAddressDetail] = useState("");
-
   const handleComplete = (data) => {
     console.log(data);
     onToggleModal();
     setAddressInput(data.address);
     setAddressZipcode(data.zonecode);
   };
+
   const onChangeAddressDetail = (event) => {
     setAddressDetail(event.target.value);
   };

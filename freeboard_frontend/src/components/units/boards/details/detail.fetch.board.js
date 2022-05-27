@@ -10,9 +10,7 @@ export const FETCH_BOARD = gql`
       createdAt
       likeCount
       dislikeCount
-      # 유튭
       youtubeUrl
-      # 주소
       boardAddress {
         zipcode
         address

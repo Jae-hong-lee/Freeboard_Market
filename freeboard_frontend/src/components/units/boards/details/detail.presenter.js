@@ -25,7 +25,7 @@ export default function DetailUI(props) {
 
           <DS.WrapperLink>
             <DS.LinkImage src="../Detailimage/Link.png"></DS.LinkImage>
-            <Tooltip title={props.data?.fetchBoard.boardAddress.address}>
+            <Tooltip title={props.data?.fetchBoard.boardAddress?.address}>
               <DS.LinkGPS src="../Detailimage/GPS.png"></DS.LinkGPS>
             </Tooltip>
           </DS.WrapperLink>

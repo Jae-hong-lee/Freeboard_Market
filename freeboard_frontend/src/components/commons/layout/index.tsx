@@ -10,13 +10,14 @@ interface ILayoutpageProps {
 }
 const HIDDEN_BANNER = ["/boarder/news"];
 function EditBoolean(element: String) {
-  let a = element.split("/");
+  const a = element.split("/");
   for (let i = 0; i < a.length; i++) {
     if (a[i].includes("edit")) {
       HIDDEN_BANNER.push(element);
     }
   }
 }
+
 export default function LayoutPage(props: ILayoutpageProps) {
   const router = useRouter();
   const isHiddenBanner = HIDDEN_BANNER.includes(router.asPath);
