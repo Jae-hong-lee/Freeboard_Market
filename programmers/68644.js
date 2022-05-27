@@ -18,10 +18,34 @@ function solution(numbers) {
 
 // solution([0, 100, 1000, 10]);
 solution([2, 1, 3, 4, 1]);
-// // 자기자신 예외처리.
-// function solution(numbers) {
-//   for (let i = 1; i < numbers.length; i++) {
-//     numbers.reduce()
-//   }
-// }
-// solution([2, 1, 3, 4, 1]);
+//  자기자신 예외처리.
+
+// ---------------------------------
+// Set
+// 1. 배열을 대체해서 사용할 수 있다.
+// 2. 타입은 객체 형태를 가진다.
+// 3. 고유한 데이터만 저장할 수 있따. (중복되는 데이터가 없다.)
+
+// set => 배열로 변환
+// 1. Array.from(arr)    Array.from
+// 2. [...arr]           스프레드 연산자
+
+// 메서드
+//
+function solution(numbers) {
+  const answer = new Set();
+  // 중복제거
+
+  numbers.forEach((num1) => {
+    // console.log(num1, numbers) // num1 빼고 자르고 가져올거임
+    // numbers.slice(i+1) // 중복되는 숫자없이 가져올 수 있음.
+    numbers.slice(i + 1).forEach((num2) => {
+      // 중복 지운 것을 가져와서 한번더 forEach를 돌린다
+      const sum = num1 + num2;
+      answer.add(sum);
+    });
+  });
+
+  return [...answer].sort((a, b) => a - b);
+  // 스프레드 연산자로 배열로 만듬
+}
