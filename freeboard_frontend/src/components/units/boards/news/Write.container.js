@@ -72,6 +72,10 @@ export default function CreateBoardPage(props) {
   function onChangeYoutubeUrl(event) {
     setYoutubeUrl(event.target.value);
   }
+  // 디테일 주소
+  const onChangeAddressDetail = (event) => {
+    setAddressDetail(event.target.value);
+  };
 
   const [createBoard] = useMutation(CREATE_BOARD);
 
@@ -120,12 +124,39 @@ export default function CreateBoardPage(props) {
 
   const [updateBoard] = useMutation(UPDATE_BOARD);
 
-  const Editvariables = {};
-  if (TitleContents) Editvariables.title = TitleContents;
-  if (TitleInput) Editvariables.contents = TitleInput;
-  if (youtubeUrl) Editvariables.youtubeUrl = youtubeUrl;
-
   const UpdateButtonClick = async () => {
+    if (
+      !TitleContents &&
+      !TitleInput &&
+      !youtubeUrl &&
+      !addressInput &&
+      !addressDetail &&
+      !adreeZipcode
+    ) {
+      Modal.error({
+        title: "수정한 내용이 없습니다.",
+      });
+      return;
+    }
+
+    if (!Password) {
+      Modal.error({
+        title: "비밀번호를 입력하세요.",
+      });
+      return;
+    }
+
+    const Editvariables = {};
+    if (TitleContents) Editvariables.title = TitleContents;
+    if (TitleInput) Editvariables.contents = TitleInput;
+    if (youtubeUrl) Editvariables.youtubeUrl = youtubeUrl;
+    if (addressInput || addressDetail || adreeZipcode) {
+      Editvariables.boardAddress = {};
+      if (adreeZipcode) Editvariables.boardAddress.zipcode = adreeZipcode;
+      if (addressInput) Editvariables.boardAddress.address = addressInput;
+      if (addressDetail)
+        Editvariables.boardAddress.addressDetail = addressDetail;
+    }
     try {
       await updateBoard({
         variables: {
@@ -144,10 +175,11 @@ export default function CreateBoardPage(props) {
     }
     router.push(`/boarder/${router.query.boardId}`);
   };
+  // isModalView
+  const [isModalView, setisModalView] = useState(false);
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
   const onToggleModal = () => {
-    setIsModalVisible((perv) => !perv);
+    setisModalView((perv) => !perv);
   };
 
   const handleComplete = (data) => {
@@ -155,10 +187,6 @@ export default function CreateBoardPage(props) {
     onToggleModal();
     setAddressInput(data.address);
     setAddressZipcode(data.zonecode);
-  };
-
-  const onChangeAddressDetail = (event) => {
-    setAddressDetail(event.target.value);
   };
 
   return (
@@ -182,7 +210,7 @@ export default function CreateBoardPage(props) {
       // 주소
       handleComplete={handleComplete}
       onToggleModal={onToggleModal}
-      isModalVisible={isModalVisible}
+      isModalView={isModalView}
       addressInput={addressInput}
       adreeZipcode={adreeZipcode}
       onChangeAddressDetail={onChangeAddressDetail}

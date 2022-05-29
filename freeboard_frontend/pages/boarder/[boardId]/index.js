@@ -6,7 +6,7 @@ export default function DetailPage() {
   return (
     <>
       <DetailBoardPage />
-      <BoardCommentWrite />
+      <BoardCommentWrite isEdit={false} />
       <BoardCommentList />
     </>
   );

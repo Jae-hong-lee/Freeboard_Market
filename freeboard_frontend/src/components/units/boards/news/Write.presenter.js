@@ -56,6 +56,7 @@ export default function WriteUI(props) {
         <S.AddressWrapper>
           {/* 우편번호 */}
           <S.AddressZipcode
+            placeholder="00000"
             value={
               props.adreeZipcode || props.data?.fetchBoard.boardAddress?.zipcode
             }
@@ -64,7 +65,8 @@ export default function WriteUI(props) {
           <S.AddressBtn onClick={props.onToggleModal}>
             우편번호 검색
           </S.AddressBtn>
-          {props.isModalVisible && (
+          {/* 우편번호 모달 */}
+          {props.isModalView && (
             <Modal
               visible={true}
               onOk={props.onToggleModal}
@@ -85,7 +87,6 @@ export default function WriteUI(props) {
           onChange={props.onChangeAddressDetail}
           defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail}
         />
-        {/* 우편번호 모달 */}
       </S.InputWrapper>
 
       <S.InputWrapper>

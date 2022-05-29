@@ -1,3 +1,4 @@
+import Pagination01 from "../../../commons/paginations/01/Pagenation.container";
 import * as LS from "./boardlist.styles";
 
 export default function ListsUI(props) {
@@ -27,6 +28,7 @@ export default function ListsUI(props) {
             </LS.BoardsListLine>
           ))}
         </LS.BoardsList>
+        <Pagination01 refetch={props.refetch} count={props.dataBoardsCount} />
       </LS.BoardsWrapper>
       <LS.MoveWritecontainer onClick={props.onClickMoveCreateBoard}>
         게시물 등록하기

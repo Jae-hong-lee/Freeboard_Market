@@ -2,7 +2,6 @@ import { useMutation, useQuery } from "@apollo/client";
 import {
   FETCH_BOARDS_COMMENTS,
   DELETE_COMMENTS,
-  FETCH_BOARDS,
 } from "./BoardCommentList.quire";
 import { useRouter } from "next/router";
 import BoardCommentListUI from "./BoardCommentList.presenter";
@@ -11,7 +10,6 @@ import { Modal } from "antd";
 
 export default function BoardCommentList() {
   const router = useRouter();
-  // console.log(router.query.boardId);
 
   const { data, fetchMore } = useQuery(FETCH_BOARDS_COMMENTS, {
     variables: {
@@ -29,8 +27,6 @@ export default function BoardCommentList() {
   };
 
   const DeleteCommentOnclick = (event) => {
-    // 모달로 변경
-    // const password = prompt("비밀번호를 입력해주세요!!!");
     setIsModalVisible(true);
     setAddress(event.target.id);
   };
@@ -85,6 +81,7 @@ export default function BoardCommentList() {
       },
     });
   };
+
   return (
     <BoardCommentListUI
       data={data}

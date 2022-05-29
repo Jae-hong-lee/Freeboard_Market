@@ -39,8 +39,13 @@ export default function BoardCommentWriteUI(props) {
           {/* footer */}
           <SC.Footer>
             <div>{props.contents.length}/ 100</div>
-            <SC.ContentBtn onClick={props.onClickSubmit}>
-              등록하기!!!
+
+            <SC.ContentBtn
+              onClick={
+                props.isEdit ? props.UpdateCommentOnclick : props.onClickSubmit
+              }
+            >
+              {props.isEdit ? "수정" : "등록"} 하기!!!
             </SC.ContentBtn>
           </SC.Footer>
         </SC.ContentsBox>

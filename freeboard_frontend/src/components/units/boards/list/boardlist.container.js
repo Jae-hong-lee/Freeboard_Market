@@ -2,10 +2,12 @@ import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
 import ListsUI from "./boardlist.presenter";
-import { FETCH_BOARDS } from "./boardlist.quries";
+import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from "./boardlist.quries";
 
 export default function BoardsListsPage() {
-  const { data } = useQuery(FETCH_BOARDS);
+  const { data, refetch } = useQuery(FETCH_BOARDS);
+  const { data: dataBoardsCount } = useQuery(FETCH_BOARDS_COUNT);
+
   const router = useRouter();
   const onClickMoveCreateBoard = () => {
     router.push(`/boarder/news`);
@@ -19,6 +21,8 @@ export default function BoardsListsPage() {
       data={data}
       onClickMoveCreateBoard={onClickMoveCreateBoard}
       onClickTitle={onClickTitle}
+      refetch={refetch}
+      dataBoardsCount={dataBoardsCount?.fetchBoardsCount}
     />
   );
 }

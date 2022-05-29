@@ -3,12 +3,16 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { FETCH_BOARDS_COMMENTS } from "../list/BoardCommentList.quire";
 import BoardCommentWriteUI from "./BoardCommentWrite.presenter";
-import { CREATE_BOARD_COMMENT } from "./BoardCommentWrite.quires";
+import {
+  CREATE_BOARD_COMMENT,
+  UPDATE_BOARD_COMMENT,
+} from "./BoardCommentWrite.quires";
 import { Modal } from "antd";
-export default function BoardCommentWrite() {
+
+export default function BoardCommentWrite(props) {
   const router = useRouter(3);
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
-
+  const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
@@ -86,13 +90,46 @@ export default function BoardCommentWrite() {
     }
   };
 
+  const UpdateCommentOnclick = async () => {
+    if (!contents) {
+      alert("내용수정 X");
+    }
+    if (!password) {
+      alert("패스워드 입력 x");
+    }
+    try {
+      // if (!props.el?._id) return;
+      await updateBoardComment({
+        variables: {
+          updateBoardCommentInput: { contents },
+          password,
+          boardCommentId: props.el?._id,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_BOARDS_COMMENTS,
+            variables: { boardId: router.query.boardId },
+          },
+        ],
+      });
+      props.setIsEdit?.(false);
+      console.log("성공");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <>
       <BoardCommentWriteUI
+        // test
+        onClickSubmit={onClickSubmit}
+        UpdateCommentOnclick={UpdateCommentOnclick}
+        isEdit={props.isEdit}
+        // ----
         onChangeWriter={onChangeWriter}
         onChangePassword={onChangePassword}
         onChangeContents={onChangeContents}
-        onClickSubmit={onClickSubmit}
         writerError={writerError}
         passwordError={passwordError}
         contentsError={contentsError}
