@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { FETCH_BOARD } from "../../../../src/components/units/boards/list/boardlist.quries";
 import CreateBoardPage from "../../../../src/components/units/boards/news/Write.container";
+import { motion } from "framer-motion";
 
 export default function BoardEditPage() {
   const router = useRouter();
@@ -10,9 +11,12 @@ export default function BoardEditPage() {
   });
   // 수정 등록 컨테이너, 댓글 못록 추가.
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <CreateBoardPage isEdit={true} data={data} />
-      {/* <BoardCommentWrite /> */}
-    </>
+    </motion.div>
   );
 }

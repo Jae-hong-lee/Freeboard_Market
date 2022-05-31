@@ -21,13 +21,16 @@ export const CREATE_BOARD_COMMENT = gql`
 // updateBoardComment
 export const UPDATE_BOARD_COMMENT = gql`
   mutation updateBoardComment(
+    $updateBoardCommentInput: UpdateBoardCommentInput!
     $password: String
     $boardCommentId: ID!
-    $updateBoardCommentInput: UpdateBoardCommentInput!
   ) {
-    _id
-    writer
-    contents
-    rating
+    updateBoardComment(
+      updateBoardCommentInput: $updateBoardCommentInput
+      password: $password
+      boardCommentId: $boardCommentId
+    ) {
+      _id
+    }
   }
 `;

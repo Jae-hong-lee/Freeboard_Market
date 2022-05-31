@@ -170,6 +170,5 @@ export const Button = styled.button`
   cursor: pointer;
   :hover {
     background-color: #2860e1;
-    border-color: white;
   }
 `;

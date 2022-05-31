@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import Slider from "react-slick";
 const Wrapper = styled.div`
-  background-color: rebeccapurple;
   height: 350px;
   padding: 0px 50px;
 `;
@@ -34,10 +33,10 @@ export default function LayoutBanner() {
     autoplaySpeed: 500,
     cssEase: "linear",
   };
+
   return (
     <>
       <Wrapper>
-        여기는 베너영역 입니다!!
         <Slider {...settings}>
           <SliderDiv>
             <ImageDiv>

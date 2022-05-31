@@ -1,18 +1,19 @@
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { FETCH_BOARDS_COMMENTS } from "../list/BoardCommentList.quire";
 import BoardCommentWriteUI from "./BoardCommentWrite.presenter";
 import {
   CREATE_BOARD_COMMENT,
   UPDATE_BOARD_COMMENT,
 } from "./BoardCommentWrite.quires";
+import { FETCH_BOARDS_COMMENTS } from "../list/BoardCommentList.quire";
 import { Modal } from "antd";
 
 export default function BoardCommentWrite(props) {
   const router = useRouter(3);
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
   const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
+
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
@@ -93,15 +94,23 @@ export default function BoardCommentWrite(props) {
   const UpdateCommentOnclick = async () => {
     if (!contents) {
       alert("내용수정 X");
+      return;
     }
     if (!password) {
       alert("패스워드 입력 x");
+      return;
     }
     try {
-      // if (!props.el?._id) return;
+      if (!props.el?._id) return;
+
+      const updateBoardCommentInput = {};
+      if (contents) updateBoardCommentInput.contents = contents;
+      if (rating !== props.el?.rating) updateBoardCommentInput.rating = rating;
+      // 별점이 전에 주던 별점과 다르면 객체.rating을 키값으로 rating 벨류로 객체추가.
+      console.log(updateBoardCommentInput);
       await updateBoardComment({
         variables: {
-          updateBoardCommentInput: { contents },
+          updateBoardCommentInput,
           password,
           boardCommentId: props.el?._id,
         },
@@ -112,10 +121,12 @@ export default function BoardCommentWrite(props) {
           },
         ],
       });
+      console.log(props.el?._id);
       props.setIsEdit?.(false);
       console.log("성공");
     } catch (error) {
-      alert(error.message);
+      console.log(props.el);
+      alert("수정실패");
     }
   };
 
@@ -126,6 +137,7 @@ export default function BoardCommentWrite(props) {
         onClickSubmit={onClickSubmit}
         UpdateCommentOnclick={UpdateCommentOnclick}
         isEdit={props.isEdit}
+        el={props.el}
         // ----
         onChangeWriter={onChangeWriter}
         onChangePassword={onChangePassword}
@@ -135,6 +147,7 @@ export default function BoardCommentWrite(props) {
         contentsError={contentsError}
         contents={contents}
         rating={rating}
+        setRating={setRating}
         onChangeStar={onChangeStar}
       />
     </>

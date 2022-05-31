@@ -12,7 +12,8 @@ export default function BoardCommentWriteUI(props) {
             type="text"
             placeholder="작성자"
             onChange={props.onChangeWriter}
-            // defaultValue = {}
+            defaultValue={props.el?.writer}
+            readOnly={!!props.el?.writer}
           />
           <SC.Error>{props.writerError}</SC.Error>
           <SC.Input
