@@ -25,3 +25,35 @@ solution(121);
 solution(3);
 
 // -----------------------------------------------
+// 멘토님 풀이
+function solution(n) {
+  let answer = -1;
+
+  for (let i = 1; i * i <= n; i++) {
+    return (i + 1) * (i + 1);
+    // answer = i + 1;
+    // answer = answer * answer;
+  }
+  return -1;
+}
+// ================================
+// 제곱만드는법
+// Math.pow(11, 2) // 11을 2제곱 하겠다~
+// isInteger() // 정수가 맞다면 true, 아니라면 False
+function solution(n) {
+  const answer = Math.sqrt(n);
+  if (Number.isInteger(answer)) {
+    answer++;
+    return answer ** 2;
+  }
+  return -1;
+}
+// ----------------------
+function solution(n) {
+  let answer = Math.sqrt(n);
+  if (n % answer === 0) {
+    answer++;
+    return answer ** 2;
+  }
+  return -1;
+}
