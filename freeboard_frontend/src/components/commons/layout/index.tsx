@@ -20,11 +20,14 @@ const BodyDiv = styled.div`
 
 const SiteInButton = styled.button`
   position: fixed;
-  border-radius: 15px;
-  border: 1px solid #0066ff;
+  text-align: center;
+  border-radius: 4px;
+  border: none;
+  height: 30px;
   left: 50%;
   bottom: 30%;
   color: #0066ff;
+
   /* margin: 10px; */
   :hover {
     background-color: #0066ff;
