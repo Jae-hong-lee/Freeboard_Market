@@ -40,6 +40,9 @@ export default function BoardCommentListItemUI(props) {
       Modal.error({ content: error.message });
     }
   };
+  const handleCancel = () => {
+    setIsOpenModel(false);
+  };
   const onClickDeleteModel = () => {
     setIsOpenModel(true);
   };
@@ -67,7 +70,11 @@ export default function BoardCommentListItemUI(props) {
                 />
                 {/* 모달버튼 */}
                 {isOpenModel && (
-                  <Modal visible={true} onOk={onDeleteClick}>
+                  <Modal
+                    visible={true}
+                    onOk={onDeleteClick}
+                    onCancel={handleCancel}
+                  >
                     비밀번호 입력:
                     <input type="password" onChange={onChangeDeletePW} />
                   </Modal>

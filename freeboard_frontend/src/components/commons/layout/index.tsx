@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import LayoutBanner from "./banner";
 import LayoutFooter from "./footer";
 import LayoutHadder from "./header";
@@ -21,17 +21,19 @@ const BodyDiv = styled.div`
 const SiteInButton = styled.button`
   position: fixed;
   text-align: center;
+  left: 48%;
+  bottom: 30%;
+  font-size: 15px;
+  font-weight: 700;
   border-radius: 4px;
   border: none;
-  height: 30px;
-  left: 50%;
-  bottom: 30%;
-  color: #0066ff;
-
-  /* margin: 10px; */
+  color: white;
+  box-shadow: 0px 1px 10px;
+  background-color: #21d4fd;
+  background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%);
+  cursor: pointer;
   :hover {
-    background-color: #0066ff;
-    color: white;
+    color: black;
   }
 `;
 const HIDDEN_BANNER = ["/boarder/news"];

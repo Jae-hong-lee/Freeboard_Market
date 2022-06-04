@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 // import HomeWrapper from "../styles/IndexStyle";
 
 const HomeWrapper = styled.div`
-  background: url("../SiteName.gif") center/cover;
+  background: url("../HomeSite.gif") center/cover;
   /* background: url(id) center/cover; */
   width: 100vw;
   height: 100vh;
@@ -12,7 +12,7 @@ const HomeWrapper = styled.div`
 
 // 이미지 태그로 바꾸고 넣어보자.
 export default function Home() {
-  const images = ["../SiteNmae.gif"];
+  const images = ["../HomeSite.gif"];
   const randomimage = images[Math.floor(Math.random() * images.length)];
 
   return <HomeWrapper id={images[randomimage]}></HomeWrapper>;

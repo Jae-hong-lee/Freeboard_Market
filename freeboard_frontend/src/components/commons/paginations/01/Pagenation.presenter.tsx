@@ -4,7 +4,12 @@ export default function Pagination01UI(props: any) {
   console.log(props);
   return (
     <P.WrapperPage>
-      <span onClick={props.onClickPreviousPage}>&lt;</span>
+      <button
+        onClick={props.onClickPreviousPage}
+        disabled={props.startPage === 1 ? true : false}
+      >
+        &lt;
+      </button>
       {new Array(10).fill(1).map(
         (_, index) =>
           props.startPage + index <= props.lastPage && (
@@ -18,7 +23,12 @@ export default function Pagination01UI(props: any) {
             </P.Pages>
           )
       )}
-      <span onClick={props.onClickNextPage}>&gt;</span>
+      <button
+        onClick={props.onClickNextPage}
+        disabled={props.startPage + 10 >= props.lastPage ? true : false}
+      >
+        &gt;
+      </button>
     </P.WrapperPage>
   );
 }

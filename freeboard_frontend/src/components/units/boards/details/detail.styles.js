@@ -166,9 +166,14 @@ export const Button = styled.button`
   border-radius: 20px;
   text-align: center;
   margin: 0px 12px;
-  background-color: white;
   cursor: pointer;
+  border: none;
+  color: white;
+  box-shadow: 0px 1px 10px;
+  background-color: #21d4fd;
+  background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%);
+
   :hover {
-    background-color: #2860e1;
+    color: black;
   }
 `;
