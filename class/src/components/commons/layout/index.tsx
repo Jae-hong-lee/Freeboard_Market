@@ -11,6 +11,7 @@ interface ILayoutProps {
 
 const HIDDEN_HEADERS = [
   "/12-05-modal-refactoring",
+
   // ...
   // ...
   // 숨기고 싶은 페이지 배열
@@ -31,7 +32,7 @@ export default function Layout(props: ILayoutProps) {
         <div
           style={{
             width: "100px",
-            height: "300px",
+            // height: "300px",
             backgroundColor: "skyblue",
           }}
         >
