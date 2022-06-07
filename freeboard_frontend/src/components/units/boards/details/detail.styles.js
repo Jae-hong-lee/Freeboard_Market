@@ -97,12 +97,14 @@ export const TitleText = styled.h1`
 `;
 // IMG
 export const ContentImage = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Image = styled.img`
   width: 996px;
   height: 480px;
-  left: 474px;
-  top: 1024px;
-  background-color: gray;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 `;
 // Contents
 export const Contents = styled.span`

@@ -14,8 +14,7 @@ export default function DetailBoardPage() {
   const { data } = useQuery(FETCH_BOARD, {
     variables: { boardId: router.query.boardId },
   });
-  // console.log(data?.fetchBoard);
-  // 목록이동
+
   const onClickMoveBoardList = () => {
     router.push("/boarder/list");
   };

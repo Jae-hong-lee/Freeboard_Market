@@ -1,11 +1,19 @@
 import Pagination01 from "../../../commons/paginations/01/Pagenation.container";
 import * as LS from "./boardlist.styles";
+import SearchBar01 from "../../../commons/searchbar/boardlist/Searchbar01.container";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ListsUI(props) {
   return (
     <LS.Wrapper>
       {/* 게시물목록? */}
       {/* table? div? */}
+      {/* 궅이 검색하기를 여기서 만들필요없음. */}
+      <SearchBar01
+        refetch={props.refetch}
+        refetchBoardsCount={props.refetchBoardsCount}
+        onChangeKeyword={props.onChangeKeyword}
+      />
       <LS.BoardsWrapper>
         <LS.BoardsList>
           <LS.BoardsListLine>
@@ -20,7 +28,18 @@ export default function ListsUI(props) {
             <LS.BoardsListLine key={el._id}>
               <LS.ColumnNumber>{index + 1}</LS.ColumnNumber>
               <LS.ColumnTitle onClick={props.onClickTitle} id={el._id}>
-                {el.title}
+                {el.title
+                  .replaceAll(props.keyword, `@#$%${props.keyword}@#$%`)
+                  .split("@#$%")
+                  .map((el) => (
+                    <LS.TextToken
+                      key={uuidv4()}
+                      isMatched={props.keyword === el}
+                      id={el._id}
+                    >
+                      {el}
+                    </LS.TextToken>
+                  ))}
               </LS.ColumnTitle>
               <LS.ColumnWriter>{el.writer}</LS.ColumnWriter>
               <LS.ColumnLike>{el.likeCount}</LS.ColumnLike>

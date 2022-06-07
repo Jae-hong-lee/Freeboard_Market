@@ -1,7 +1,6 @@
 import * as P from "./Pagenation.styles";
 
 export default function Pagination01UI(props: any) {
-  console.log(props);
   return (
     <P.WrapperPage>
       <button

@@ -1,9 +1,28 @@
-import { useQuery } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { FETCH_BOARD } from "../../../../src/components/units/boards/list/boardlist.quries";
 import CreateBoardPage from "../../../../src/components/units/boards/news/Write.container";
 import { motion } from "framer-motion";
 
+const FETCH_BOARD = gql`
+  query fetchBoard($boardId: ID!) {
+    fetchBoard(boardId: $boardId) {
+      _id
+      writer
+      title
+      contents
+      createdAt
+      likeCount
+      dislikeCount
+      youtubeUrl
+      boardAddress {
+        zipcode
+        address
+        addressDetail
+      }
+      images
+    }
+  }
+`;
 export default function BoardEditPage() {
   const router = useRouter();
   const { data } = useQuery(FETCH_BOARD, {

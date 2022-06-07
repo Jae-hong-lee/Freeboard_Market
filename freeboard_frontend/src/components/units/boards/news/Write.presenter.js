@@ -1,6 +1,9 @@
 import * as S from "./Write.styles";
 import DaumPostcode from "react-daum-postcode";
 import { Modal } from "antd";
+import { v4 as uuidv4 } from "uuid";
+import UploadWritePage from "../../../commons/Uploads/WriteImg/UploadsWrite.container";
+
 export default function WriteUI(props) {
   return (
     // JSX
@@ -95,15 +98,22 @@ export default function WriteUI(props) {
           placeholder="링크를 복사해주세요."
           onChange={props.onChangeYoutubeUrl}
           // 디폴트값 유튜브
-          defaultValue={props.data?.fetchBoard.youtubeUrl}
+          defaultValue={props.data?.fetchBoard.youtubeUrl || ""}
         />
       </S.InputWrapper>
 
       <S.ImageWrapper>
         <S.Label>사진첨부</S.Label>
-        <S.UploadButton>+</S.UploadButton>
-        <S.UploadButton>+</S.UploadButton>
-        <S.UploadButton>+</S.UploadButton>
+        <div style={{ display: "flex" }}>
+          {props.fileUrls.map((el, index) => (
+            <UploadWritePage
+              key={uuidv4()}
+              index={index}
+              fileUrl={el}
+              onChangeFileUrls={props.onChangeFileUrls}
+            />
+          ))}
+        </div>
       </S.ImageWrapper>
 
       <S.OptionWrapper>

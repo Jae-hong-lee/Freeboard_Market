@@ -127,20 +127,12 @@ export const Youtube = styled.input`
 
 // 사진
 export const ImageWrapper = styled.div`
-  width: 996px;
+  width: 100%;
   padding-top: 40px;
+  /* display: flex; */
+  /* flex-direction: row; */
 `;
 
-export const UploadButton = styled.button`
-  width: 78px;
-  height: 78px;
-  background-color: #bdbdbd;
-  margin-right: 24px;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  /* 포인터... */
-`;
 // 메인설정
 export const OptionWrapper = styled.div`
   width: 996px;

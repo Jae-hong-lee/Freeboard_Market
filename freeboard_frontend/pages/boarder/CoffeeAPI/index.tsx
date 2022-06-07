@@ -7,7 +7,6 @@ export default function OpenRandomCoffeeImg() {
   useEffect(() => {
     const fetchCoffee = async () => {
       const result = await axios.get("https://foodish-api.herokuapp.com/api/");
-      console.log(result.data);
       setCoffeeUrl(result.data.image);
     };
     fetchCoffee();

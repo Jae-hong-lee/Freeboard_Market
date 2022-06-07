@@ -33,9 +33,24 @@ const ClickSpanAPI = styled.span`
 `;
 
 const SiteName = styled.div`
-  font-size: 30px;
+  width: 10%;
+  font-size: 15px;
   font-weight: 700;
   margin-left: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+`;
+
+const LoginPage = styled.div`
+  :hover {
+    color: cornflowerblue;
+  }
+`;
+const SingUpPage = styled.div`
+  :hover {
+    color: cornflowerblue;
+  }
 `;
 export default function LayoutNavigation() {
   const router = useRouter();
@@ -54,15 +69,25 @@ export default function LayoutNavigation() {
   const onClickAPI = () => {
     router.push("/boarder/CoffeeAPI");
   };
+
+  const onClickLoginMove = () => {
+    router.push("/Login");
+  };
+  const onClickSingUpMove = () => {
+    router.push("/Signup");
+  };
   return (
     <>
       <Wrapper>
         <NavigationWrapper>
-          <SiteName>Site Name</SiteName>
+          <SiteName>
+            <SingUpPage onClick={onClickSingUpMove}>회원가입</SingUpPage>
+            <LoginPage onClick={onClickLoginMove}>로그인</LoginPage>
+          </SiteName>
           <ListWrapper>
-            <ClickSpan onClick={onClickGoList}>게시판 목록 |</ClickSpan>
-            <ClickSpan onClick={onClickGoMarket}> 중고마켓 |</ClickSpan>
-            <ClickSpan onClick={onClickGoMypage}> 마이페이지 |</ClickSpan>
+            <ClickSpan onClick={onClickGoList}>게시판 목록 </ClickSpan> |
+            <ClickSpan onClick={onClickGoMarket}> 중고마켓 </ClickSpan> |
+            <ClickSpan onClick={onClickGoMypage}> 마이페이지</ClickSpan> |
             <ClickSpanAPI onClick={onClickAPI}> 뭐 먹을까?</ClickSpanAPI>
           </ListWrapper>
         </NavigationWrapper>

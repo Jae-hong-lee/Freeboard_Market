@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import {
   DELETE_COMMENTS,
-  FETCH_BOARD_COMMENTS,
+  FETCH_BOARDS_COMMENTS,
 } from "./BoardCommentList.quire";
 import { useRouter } from "next/router";
 
@@ -31,10 +31,15 @@ export default function BoardCommentListItemUI(props) {
         },
         refetchQueries: [
           {
-            query: FETCH_BOARD_COMMENTS,
-            variables: { boardId: router.query.boardId },
+            query: FETCH_BOARDS_COMMENTS,
+            variables: {
+              boardId: router.query.boardId,
+            },
           },
         ],
+      });
+      Modal.success({
+        content: "댓글삭제 완료!!",
       });
     } catch (error) {
       Modal.error({ content: error.message });
@@ -60,7 +65,7 @@ export default function BoardCommentListItemUI(props) {
                 <BC.ProfileImg src="/images/Profile.png" />
                 <BC.Writer>{props.el?.writer}</BC.Writer>
                 {/* 별점 */}
-                <Rate value={props.el?.rating} />
+                <Rate value={props.el?.rating} disabled />
               </BC.WriteRatingWrapper>
               {/* 수정 삭제 */}
               <BC.BtnWrapper>

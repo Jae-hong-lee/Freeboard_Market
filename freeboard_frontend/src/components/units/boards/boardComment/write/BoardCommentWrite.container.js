@@ -77,7 +77,6 @@ export default function BoardCommentWrite(props) {
             },
           ], // reFetch
         });
-        // location.reload(); // 페이지 새로고침
         console.log(result);
         Modal.success({
           content: "댓글이 등록되었습니다!!",
@@ -121,7 +120,6 @@ export default function BoardCommentWrite(props) {
           },
         ],
       });
-      console.log(props.el?._id);
       props.setIsEdit?.(false);
       console.log("성공");
     } catch (error) {

@@ -10,9 +10,9 @@ const LinkimageWrapper = styled.div`
   width: 100%;
   flex-direction: row;
   justify-content: center;
-  transform: translateX(-150%);
-  transform: translateY(-150%);
-  /* align-items: center; */
+  align-items: center;
+  /* transform: translateX(-150%); */
+  /* transform: translateY(-150%); */
 `;
 
 const LinkImg = styled.img`

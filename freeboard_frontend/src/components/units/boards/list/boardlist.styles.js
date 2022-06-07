@@ -42,7 +42,6 @@ export const ColumnNumber = styled.div`
 export const ColumnTitle = styled.div`
   width: 70%;
   text-align: center;
-  /* background-color: cornflowerblue; */
   margin: 10px;
 `;
 export const ColumnWriter = styled.div`
@@ -74,8 +73,18 @@ export const MoveWritecontainer = styled.button`
   box-shadow: 0px 1px 10px;
   background-color: #21d4fd;
   background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%);
-
   :hover {
     color: black;
   }
+`;
+
+export const SearchInput = styled.input`
+  width: 500px;
+  height: 30px;
+  margin-right: 20px;
+`;
+
+export const TextToken = styled.span`
+  font-weight: ${(props) => (props.isMatched ? 700 : "none")};
+  color: ${(props) => (props.isMatched ? "cornflowerblue" : "black")};
 `;

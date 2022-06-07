@@ -1,11 +1,10 @@
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { UPDATE_BOARD, CREATE_BOARD } from "./Write.create.board";
 import WriteUI from "../news/Write.presenter";
 import { Modal } from "antd";
 
-// JS
 export default function CreateBoardPage(props) {
   const [User, setUser] = useState("");
   const [Password, setPassword] = useState("");
@@ -15,6 +14,8 @@ export default function CreateBoardPage(props) {
   const [addressInput, setAddressInput] = useState("");
   const [adreeZipcode, setAddressZipcode] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
+  // 이미지배열
 
   const [ErrorUser, setErrorUser] = useState("");
   const [ErrorPw, setErrorPw] = useState("");
@@ -77,6 +78,13 @@ export default function CreateBoardPage(props) {
     setAddressDetail(event.target.value);
   };
 
+  // 이미지 여러개 넣기
+  const onChangeFileUrls = (fileUrl, index) => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  };
+
   const [createBoard] = useMutation(CREATE_BOARD);
 
   const SubmitButtonClick = async () => {
@@ -107,9 +115,12 @@ export default function CreateBoardPage(props) {
                 address: addressInput,
                 addressDetail,
               },
+              images: fileUrls,
             },
           },
         });
+        console.log(result);
+        // result 값 확인
         Modal.success({
           content: "게시글이 등록되었습니다!",
         });
@@ -123,15 +134,19 @@ export default function CreateBoardPage(props) {
   };
 
   const [updateBoard] = useMutation(UPDATE_BOARD);
-
   const UpdateButtonClick = async () => {
+    const currentFiles = JSON.stringify(fileUrls);
+    const defaultFiles = JSON.stringify(props.data.fetchBoard.images);
+    const isChangedFiles = currentFiles !== defaultFiles;
+
     if (
       !TitleContents &&
       !TitleInput &&
       !youtubeUrl &&
       !addressInput &&
       !addressDetail &&
-      !adreeZipcode
+      !adreeZipcode &&
+      !isChangedFiles
     ) {
       Modal.error({
         title: "수정한 내용이 없습니다.",
@@ -189,11 +204,20 @@ export default function CreateBoardPage(props) {
     setAddressZipcode(data.zonecode);
   };
 
+  // 이미지 초기값 세팅
+  useEffect(() => {
+    if (props.data?.fetchBoard.images?.length) {
+      setFileUrls([...props.data?.fetchBoard.images]);
+    }
+  }, [props.data]);
+
   return (
     <WriteUI
+      onChangeFileUrls={onChangeFileUrls}
+      fileUrls={fileUrls}
+      // 이미지 추가
       SubmitButtonClick={SubmitButtonClick}
       UpdateButtonClick={UpdateButtonClick}
-      //   수정버튼 추가
       onChangeTitleInput={onChangeTitleInput}
       onChangeTitleContents={onChangeTitleContents}
       onChangePw={onChangePw}
