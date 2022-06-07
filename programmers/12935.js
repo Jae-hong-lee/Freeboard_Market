@@ -9,3 +9,15 @@ function solution(arr) {
 
 solution([4, 3, 2, 1]);
 solution([10]);
+
+// =================================
+// 메서드 사용, 스프레드 연산자, filter!!!
+function solution(arr) {
+  const min = Math.min(...arr);
+  const answer = arr.filter((num) => {
+    return num !== min; // 제일 작은 값만 남긴다.
+  });
+  return answer.length === 0 ? [-1] : answer;
+}
+solution([4, 3, 2, 1]);
+solution([10]);
