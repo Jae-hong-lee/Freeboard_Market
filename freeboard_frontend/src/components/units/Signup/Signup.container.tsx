@@ -1,21 +1,24 @@
+import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
+import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import SignUpPresenterPage from "./Signup.presenter";
+import { CREATE_USER } from "./Signup.queries";
 
 export default function SignUpContainerPage() {
+  const router = useRouter();
   const [isActive, setIsActive] = useState(false);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [passwordcheck, setPasswordCheck] = useState("");
+  // const [passwordcheck, setPasswordCheck] = useState("");
 
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [nameError, setNameError] = useState("");
-  const [PasswordCheckError, setPasswordCheckError] = useState("");
-
-  // 비밀번호 확인하기 로직 확인하기, isActive 확인.
-  // https://velog.io/@leemember/%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EC%9C%A0%ED%9A%A8%EC%84%B1-%EA%B2%80%EC%82%AC
+  // const [PasswordCheckError, setPasswordCheckError] = useState("");
+  const [createUser] = useMutation(CREATE_USER);
   const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
     if (event.target.value !== "") {
@@ -52,7 +55,7 @@ export default function SignUpContainerPage() {
   // 비밀번호 확인 온체인지 로직을 모르겠음
   // const onChangepasswordCheck = (event: ChangeEvent<HTMLInputElement>) => {};
   // async
-  const onClickSignup = () => {
+  const onClickSignup = async () => {
     if (!name) {
       setNameError("이름을 작성해주세요");
     }
@@ -62,13 +65,23 @@ export default function SignUpContainerPage() {
     if (!password) {
       setPasswordError("비밀번호가 입력되지 않았습니다.");
     }
-    if (!passwordcheck) {
-      setPasswordCheckError("비밀번호를 확인해주세요");
-    }
-
-    if (name && email && password && passwordcheck) {
+    // if (!passwordcheck) {
+    //   setPasswordCheckError("비밀번호를 확인해주세요");
+    // }
+    if (name && email && password) {
       try {
+        const result = await createUser({
+          variables: {
+            createUserInput: {
+              name,
+              email,
+              password,
+            },
+          },
+        });
+        console.log(result.data);
         Modal.success({ content: "회원가입성공!" });
+        router.push("./Login");
       } catch (error) {
         Modal.error({ content: "회원가입실패" });
       }
@@ -84,7 +97,7 @@ export default function SignUpContainerPage() {
       nameError={nameError}
       emailError={emailError}
       passwordError={passwordError}
-      setPasswordCheckError={PasswordCheckError}
+      // setPasswordCheckError={PasswordCheckError}
       onClickSignup={onClickSignup}
     />
   );

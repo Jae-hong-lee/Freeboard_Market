@@ -91,40 +91,45 @@ export default function BoardCommentWrite(props) {
   };
 
   const UpdateCommentOnclick = async () => {
-    if (!contents) {
-      alert("내용수정 X");
-      return;
-    }
-    if (!password) {
-      alert("패스워드 입력 x");
-      return;
-    }
-    try {
-      if (!props.el?._id) return;
-
-      const updateBoardCommentInput = {};
-      if (contents) updateBoardCommentInput.contents = contents;
-      if (rating !== props.el?.rating) updateBoardCommentInput.rating = rating;
-      // 별점이 전에 주던 별점과 다르면 객체.rating을 키값으로 rating 벨류로 객체추가.
-      console.log(updateBoardCommentInput);
-      await updateBoardComment({
-        variables: {
-          updateBoardCommentInput,
-          password,
-          boardCommentId: props.el?._id,
-        },
-        refetchQueries: [
-          {
-            query: FETCH_BOARDS_COMMENTS,
-            variables: { boardId: router.query.boardId },
+    // if (!contents) {
+    //   Modal.error({ content: "수정사항이 없습니다." });
+    //   return;
+    // }
+    // if (!password) {
+    //   Modal.error({ content: "비밀번호가 틀렸습니다." });
+    //   return;
+    // }
+    if (contents || password || rating) {
+      try {
+        if (!props.el?._id) return;
+        const updateBoardCommentInput = {};
+        if (contents) updateBoardCommentInput.contents = contents;
+        if (rating !== props.el?.rating)
+          updateBoardCommentInput.rating = rating;
+        // 별점이 전에 주던 별점과 다르면 객체.rating을 키값으로 rating 벨류로 객체추가.
+        console.log(updateBoardCommentInput);
+        await updateBoardComment({
+          variables: {
+            updateBoardCommentInput,
+            password,
+            boardCommentId: props.el?._id,
           },
-        ],
-      });
-      props.setIsEdit?.(false);
-      console.log("성공");
-    } catch (error) {
-      console.log(props.el);
-      alert("수정실패");
+          refetchQueries: [
+            {
+              query: FETCH_BOARDS_COMMENTS,
+              variables: { boardId: router.query.boardId },
+            },
+          ],
+        });
+        props.setIsEdit?.(false);
+        Modal.success({ content: "댓글수정 성공" });
+      } catch (error) {
+        console.log(props.el);
+        Modal.error({
+          title: "댓글수정실패",
+          content: "비밀번호를 확인하세요!",
+        });
+      }
     }
   };
 

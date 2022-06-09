@@ -1,7 +1,11 @@
+import { useMutation } from "@apollo/client";
+import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../../commons/store";
 import LoginPresenterPage from "./Login.presenter";
-
+import { LOGIN_USER } from "./Login.queries";
 export default function LoginContainerPage() {
   const [isActive, setIsActive] = useState(false);
   const [email, setEmail] = useState("");
@@ -10,6 +14,8 @@ export default function LoginContainerPage() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
+  const [loginUser] = useMutation(LOGIN_USER);
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
     if (event.target.value !== "") {
@@ -34,12 +40,26 @@ export default function LoginContainerPage() {
   };
 
   // async / await 연결 API 요청할때
-  const onClickLogin = () => {
+  const onClickLogin = async () => {
     if (!email) {
-      setEmailError("작성자를 입력해주세요.");
+      setEmailError("이메일을 입력해주세요.");
     }
     if (!password) {
       setPasswordError("비밀번호를 입력해주세요.");
+    }
+    try {
+      const result = await loginUser({
+        variables: {
+          email,
+          password,
+        },
+      });
+      const accessToken = result.data.loginUser.accessToken;
+      setAccessToken(accessToken);
+      console.log(accessToken);
+      Modal.success({ content: "로그인성공!" });
+    } catch (error) {
+      Modal.error({ content: "로그인실패!" });
     }
   };
 
