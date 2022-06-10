@@ -1,7 +1,6 @@
 // ref 란 무엇인가 - useRef
 // 래퍼런스 : 가르킨다, 참조한다, 특정 태그를 가르키는 변수를 만들려고 한다.
 // 태그를 변수에 넣는다!
-
 import { gql, useMutation } from "@apollo/client";
 import { ChangeEvent, useRef, useState } from "react";
 import { Modal } from "antd";

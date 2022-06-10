@@ -1,64 +1,53 @@
 import styled from "@emotion/styled";
-import Slider from "react-slick";
+// import Slider from "react-slick";
+import BestBoardPage from "../../../../../pages/boarder/Best";
 const Wrapper = styled.div`
   height: 350px;
   padding: 0px 50px;
 `;
-const SliderDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  text-align: center;
-`;
+// const SliderDiv = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+//   text-align: center;
+// `;
 
-const ImageDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-`;
-
-const Quizimg = styled.img`
-  width: 300px;
-  height: 250px;
-  border-radius: 5px;
-`;
+// const Quizimg = styled.img`
+//   width: 300px;
+//   height: 250px;
+//   border-radius: 5px;
+// `;
 export default function LayoutBanner() {
-  const settings = {
-    dots: true,
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 4000,
-    autoplaySpeed: 500,
-    cssEase: "linear",
-  };
+  // const settings = {
+  //   dots: false,
+  //   infinite: true,
+  //   slidesToShow: 3,
+  //   slidesToScroll: 1,
+  //   autoplay: true,
+  //   speed: 4000,
+  //   autoplaySpeed: 500,
+  //   cssEase: "linear",
+  // };
 
   return (
     <>
       <Wrapper>
-        <Slider {...settings}>
+        <BestBoardPage />
+        {/* <Slider {...settings}>
+          <BestBoardPage />
           <SliderDiv>
-            <ImageDiv>
-              <Quizimg src="/ListImg/1.jpg" />
-            </ImageDiv>
+            <BestBoardPage />
           </SliderDiv>
           <SliderDiv>
-            <ImageDiv>
-              <Quizimg src="/ListImg/2.jpg" />
-            </ImageDiv>
+            <Quizimg src="/ListImg/2.jpg" />
           </SliderDiv>
           <SliderDiv>
-            <ImageDiv>
-              <Quizimg src="/ListImg/3.jpg" />
-            </ImageDiv>
+            <Quizimg src="/ListImg/3.jpg" />
           </SliderDiv>
           <SliderDiv>
-            <ImageDiv>
-              <Quizimg src="/ListImg/4.jpg" />
-            </ImageDiv>
+            <Quizimg src="/ListImg/4.jpg" />
           </SliderDiv>
-        </Slider>
+        </Slider> */}
       </Wrapper>
     </>
   );
