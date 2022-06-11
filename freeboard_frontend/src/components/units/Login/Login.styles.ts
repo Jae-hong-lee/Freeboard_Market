@@ -44,7 +44,7 @@ export const LoginBtn = styled.button`
   cursor: pointer;
   background-color: ${(props) => (props.isActive ? "cornflowerblue" : "none")};
 `;
-
+// background-color: ${(props) => (props.isActive ? "cornflowerblue" : "none")};
 export const SignupMoveBtn = styled.button`
   width: 500px;
   height: 52px;

@@ -57,7 +57,6 @@ export default function SignUpPresenterPage(props: any) {
             <SPS.NumberBtn>확인</SPS.NumberBtn>
           </SPS.NumberWrapper>
         </SPS.PhoneNumWrapper>
-
         <SPS.LoginBtn onClick={props.onClickSignup} isActive={props.isActive}>
           회원가입
         </SPS.LoginBtn>

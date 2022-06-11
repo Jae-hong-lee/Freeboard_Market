@@ -25,7 +25,10 @@ export default function BoardCommentWriteUI(props) {
 
           {/* reting 별점. */}
           <div>
-            <Rate onChange={props.onChangeStar} value={props.rating} />
+            <Rate
+              onChange={props.setRating}
+              value={props.rating || props.el?.rating}
+            />
           </div>
         </SC.Header>
         {/* contents */}

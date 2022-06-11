@@ -4,7 +4,7 @@ import { FETCH_BOARDS_OF_THE_BEST } from "./BestBoards.queries";
 
 export default function BestBoardsContainer() {
   const { data } = useQuery(FETCH_BOARDS_OF_THE_BEST);
-  console.log(data);
+  // console.log(data);
   const onClickBestBoard = () => {
     console.log(data);
   };

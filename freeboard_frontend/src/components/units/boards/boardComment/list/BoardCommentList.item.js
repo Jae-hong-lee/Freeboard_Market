@@ -65,7 +65,7 @@ export default function BoardCommentListItemUI(props) {
                 <BC.ProfileImg src="/images/Profile.png" />
                 <BC.Writer>{props.el?.writer}</BC.Writer>
                 {/* 별점 */}
-                <Rate value={props.el?.rating} disabled />
+                <Rate value={props.el?.rating} />
               </BC.WriteRatingWrapper>
               {/* 수정 삭제 */}
               <BC.BtnWrapper>

@@ -17,7 +17,7 @@ export default function BoardCommentWrite(props) {
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
-  const [rating, setRating] = useState(3); // 별점주기 ,rating: 평가하다
+  const [rating, setRating] = useState(0); // 별점주기 ,rating: 평가하다
 
   const [writerError, setWriterError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -42,9 +42,10 @@ export default function BoardCommentWrite(props) {
     }
   };
   // 별점
-  const onChangeStar = (value) => {
-    setRating(value);
-  };
+  // const onChangeStar = (e) => {
+  //   setRating(e);
+  //   // console.log(value);
+  // };
 
   const onClickSubmit = async () => {
     if (!writer) {
@@ -91,14 +92,6 @@ export default function BoardCommentWrite(props) {
   };
 
   const UpdateCommentOnclick = async () => {
-    // if (!contents) {
-    //   Modal.error({ content: "수정사항이 없습니다." });
-    //   return;
-    // }
-    // if (!password) {
-    //   Modal.error({ content: "비밀번호가 틀렸습니다." });
-    //   return;
-    // }
     if (contents || password || rating) {
       try {
         if (!props.el?._id) return;
@@ -106,7 +99,6 @@ export default function BoardCommentWrite(props) {
         if (contents) updateBoardCommentInput.contents = contents;
         if (rating !== props.el?.rating)
           updateBoardCommentInput.rating = rating;
-        // 별점이 전에 주던 별점과 다르면 객체.rating을 키값으로 rating 벨류로 객체추가.
         console.log(updateBoardCommentInput);
         await updateBoardComment({
           variables: {
@@ -124,7 +116,6 @@ export default function BoardCommentWrite(props) {
         props.setIsEdit?.(false);
         Modal.success({ content: "댓글수정 성공" });
       } catch (error) {
-        console.log(props.el);
         Modal.error({
           title: "댓글수정실패",
           content: "비밀번호를 확인하세요!",
@@ -141,7 +132,7 @@ export default function BoardCommentWrite(props) {
         UpdateCommentOnclick={UpdateCommentOnclick}
         isEdit={props.isEdit}
         el={props.el}
-        // ----
+        // --------------------------------------------
         onChangeWriter={onChangeWriter}
         onChangePassword={onChangePassword}
         onChangeContents={onChangeContents}
@@ -151,7 +142,7 @@ export default function BoardCommentWrite(props) {
         contents={contents}
         rating={rating}
         setRating={setRating}
-        onChangeStar={onChangeStar}
+        // onChangeStar={onChangeStar}
       />
     </>
   );

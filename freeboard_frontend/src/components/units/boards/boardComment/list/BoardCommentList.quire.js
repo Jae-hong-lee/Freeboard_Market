@@ -12,17 +12,6 @@ export const FETCH_BOARDS_COMMENTS = gql`
   }
 `;
 
-// export const FETCH_BOARDS = gql`
-//   query fetchBoards($page: Int) {
-//     fetchBoards(page: $page) {
-//       _id
-//       writer
-//       title
-//       contents
-//     }
-//   }
-// `;
-
 export const DELETE_COMMENTS = gql`
   mutation deleteBoardComment($password: String, $boardCommentId: ID!) {
     deleteBoardComment(password: $password, boardCommentId: $boardCommentId)
