@@ -1,5 +1,16 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
+import { gql, useQuery } from "@apollo/client";
+import { useEffect, useState } from "react";
+
+const FETCH_USER_LOGGED_IN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      email
+      name
+    }
+  }
+`;
 
 const Wrapper = styled.div`
   /* background-color: yellow; */
@@ -33,7 +44,7 @@ const ClickSpanAPI = styled.span`
 `;
 
 const SiteName = styled.div`
-  width: 10%;
+  width: 15%;
   font-size: 15px;
   font-weight: 700;
   margin-left: 100px;
@@ -53,13 +64,14 @@ const SingUpPage = styled.div`
   }
 `;
 export default function LayoutNavigation() {
+  const { data } = useQuery(FETCH_USER_LOGGED_IN);
   const router = useRouter();
 
   const onClickGoList = () => {
     router.push("/boarder/list");
   };
   const onClickGoMarket = () => {
-    router.push("/");
+    router.push("/market/new");
     // 수정필요
   };
   const onClickGoMypage = () => {
@@ -76,14 +88,24 @@ export default function LayoutNavigation() {
   const onClickSingUpMove = () => {
     router.push("/Signup");
   };
+  const [checkToken, setCheckToken] = useState("");
+  useEffect(() => {
+    setCheckToken(localStorage.getItem("accessToken") || "");
+    console.log(data);
+  }, []);
+  // const checkToken = localStorage.getItem("accessToken");
   return (
     <>
       <Wrapper>
         <NavigationWrapper>
-          <SiteName>
-            <SingUpPage onClick={onClickSingUpMove}>회원가입</SingUpPage>
-            <LoginPage onClick={onClickLoginMove}>로그인</LoginPage>
-          </SiteName>
+          {checkToken ? (
+            <SiteName>{data?.fetchUserLoggedIn?.name}님 환영합니다.</SiteName>
+          ) : (
+            <SiteName>
+              <SingUpPage onClick={onClickSingUpMove}>회원가입</SingUpPage>
+              <LoginPage onClick={onClickLoginMove}>로그인</LoginPage>
+            </SiteName>
+          )}
           <ListWrapper>
             <ClickSpan onClick={onClickGoList}>게시판 목록 </ClickSpan> |
             <ClickSpan onClick={onClickGoMarket}> 중고마켓 </ClickSpan> |

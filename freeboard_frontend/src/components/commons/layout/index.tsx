@@ -22,7 +22,7 @@ const SiteInButton = styled.button`
   position: fixed;
   text-align: center;
   left: 48%;
-  bottom: 30%;
+  bottom: 10%;
   font-size: 15px;
   font-weight: 700;
   border-radius: 4px;
@@ -30,13 +30,13 @@ const SiteInButton = styled.button`
   color: white;
   box-shadow: 0px 1px 10px;
   background-color: #21d4fd;
-  background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%);
+  background-image: linear-gradient(19deg, #f3d321 0%, #f0a926 100%);
   cursor: pointer;
   :hover {
     color: black;
   }
 `;
-const HIDDEN_BANNER = ["/boarder/news"];
+const HIDDEN_BANNER = ["/boarder/news", "/Login", "/Signup"];
 const HIDDEN_LAYOUT = ["/"];
 
 function EditBoolean(element: any) {

@@ -21,6 +21,7 @@ export default function ApolloSetting(props) {
   const client = new ApolloClient({
     cache: new InMemoryCache(),
     link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
+    connectToDevTools: true,
   });
 
   return <ApolloProvider client={client}>{props.children}</ApolloProvider>;

@@ -13,6 +13,7 @@ export const UploadImage = styled.img`
   height: 78px;
   margin-right: 24px;
   cursor: pointer;
+  object-fit: cover;
 `;
 
 export const UploadFileHidden = styled.input`

@@ -25,10 +25,19 @@ export default function BestBoardsUI(props) {
         {props.data?.fetchBoardsOfTheBest.map((el, i) => (
           <BB.Wrapper key={el._id}>
             <BB.Quizimg>
-              <div>{el.writer}</div>
-              <div>{el.title} </div>
-              <div>{el.contents} </div>
-              <div>{el.likeCount} </div>
+              {el.images[0] === undefined ? (
+                <BB.BestBoardNotImg>이미지가 없습니다. </BB.BestBoardNotImg>
+              ) : (
+                <BB.BestBoardImg
+                  src={`https://storage.googleapis.com/${el.images[0]}`}
+                />
+              )}
+              <BB.BestBoardTitle>{el.title} </BB.BestBoardTitle>
+              <BB.InputsWrapper>
+                <BB.BestBoardInputs>{el.writer}</BB.BestBoardInputs>
+                <BB.BestBoardInputs>{el.contents} </BB.BestBoardInputs>
+                <BB.BestBoardInputs>{el.likeCount} </BB.BestBoardInputs>
+              </BB.InputsWrapper>
             </BB.Quizimg>
           </BB.Wrapper>
         ))}

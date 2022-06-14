@@ -16,6 +16,7 @@ export const LoginHeader = styled.div`
   font-size: 40px;
   font-weight: 700;
   margin-bottom: 40px;
+  text-align: center;
 `;
 
 export const LoginBody = styled.div`
