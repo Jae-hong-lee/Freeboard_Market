@@ -41,7 +41,7 @@ export default function ReactHookFormPage() {
   const onClickSubmit = (data) => {
     console.log(data);
   };
-
+  // handelSubmit 으로 onClick 감싸기
   return (
     <form onSubmit={handleSubmit(onClickSubmit)}>
       이메일: <input type="text" {...register("email")} />
