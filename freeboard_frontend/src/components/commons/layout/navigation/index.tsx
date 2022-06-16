@@ -11,9 +11,7 @@ const FETCH_USER_LOGGED_IN = gql`
     }
   }
 `;
-
 const Wrapper = styled.div`
-  /* background-color: yellow; */
   height: 30px;
   width: 100%;
 `;
@@ -23,10 +21,7 @@ const NavigationWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `;
-
-const ListWrapper = styled.div`
-  /* background-color: blue; */
-`;
+const ListWrapper = styled.div``;
 const ClickSpan = styled.span`
   font-size: 20px;
   font-weight: 700;
@@ -66,7 +61,10 @@ const SingUpPage = styled.div`
 export default function LayoutNavigation() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
   const router = useRouter();
-
+  // state 만들고 초기값 false 온클릭 발생할때 스테이트 바뀌게 true
+  // true 일떄 색깔이 바뀌는걸 style에..
+  // const [isBold, setIsBold] = useState(["", "1", "", ""]);
+  // 재렌더링 너무 많을거 같음.
   const onClickGoList = () => {
     router.push("/boarder/list");
   };

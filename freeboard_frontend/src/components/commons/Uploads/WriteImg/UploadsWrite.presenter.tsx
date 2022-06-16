@@ -20,7 +20,7 @@ export default function UploadUI01(props: IUploads01UIProps) {
       ) : (
         <UPS.UploadBtn onClick={props.onClickUpload}>
           <>+</>
-          <>업로드</>
+          업로드
         </UPS.UploadBtn>
       )}
       <UPS.UploadFileHidden

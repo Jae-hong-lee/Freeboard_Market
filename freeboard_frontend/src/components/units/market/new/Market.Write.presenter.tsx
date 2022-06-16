@@ -2,7 +2,10 @@ import * as MWS from "./Market.Write.styles";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import "react-quill/dist/quill.snow.css";
+import dynamic from "next/dynamic";
 
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 const schma = yup.object({
   name: yup
     .string()
@@ -18,16 +21,20 @@ const schma = yup.object({
 
   price: yup
     .number()
-    .typeError("숫자만 입력해줭!")
+    .typeError("숫자만 입력해주세요")
     .required("상품가격을 입력해주세요"),
 });
 
 export default function MarketWriteUI(props) {
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState, setValue, trigger } = useForm({
     resolver: yupResolver(schma),
     mode: "onChange",
   });
 
+  const onChangeContents = (v: string) => {
+    setValue("contents", v === "<p><br></p>" ? "" : v);
+    trigger("contents");
+  };
   return (
     <>
       <form onSubmit={handleSubmit(props.onClickCreateItem)}>
@@ -47,7 +54,11 @@ export default function MarketWriteUI(props) {
           {/* Text Editor?? */}
           <MWS.ItemNameWrapper>
             <MWS.MarketWriteLabel>상품설명</MWS.MarketWriteLabel>
-            <MWS.MarketWriteInput type="text" {...register("contents")} />
+            {/* Web-Editor */}
+            <ReactQuill
+              style={{ height: "300px", marginBottom: "50px" }}
+              onChange={onChangeContents}
+            />
             <MWS.Error>{formState.errors.contents?.message}</MWS.Error>
           </MWS.ItemNameWrapper>
 
@@ -60,33 +71,39 @@ export default function MarketWriteUI(props) {
           <MWS.ItemNameWrapper>
             <MWS.MarketWriteLabel>태그입력</MWS.MarketWriteLabel>
             <MWS.MarketWriteInput type="text" />
-            <MWS.Error>Error 태그</MWS.Error>
+            {/* 태그 에러? */}
+            <MWS.Error></MWS.Error>
           </MWS.ItemNameWrapper>
-          <div>
+
+          <MWS.AddressWrapper>
             <MWS.KaKaoMapWrapper>
               <MWS.MarketWriteLabel>거래위치</MWS.MarketWriteLabel>
               <MWS.kakaoMap>KakaoMap</MWS.kakaoMap>
             </MWS.KaKaoMapWrapper>
+            <MWS.AddressInfo>
+              <MWS.MarketWriteLabel>GPS</MWS.MarketWriteLabel>
+              <MWS.GPSWrapper>
+                <MWS.Latitude>위도</MWS.Latitude>
+                <MWS.Latitude>경도</MWS.Latitude>
+              </MWS.GPSWrapper>
 
-            <MWS.AddressWrapper>
+              <MWS.MarketWriteLabel>주소</MWS.MarketWriteLabel>
               <div>
-                <MWS.MarketWriteLabel>GPS</MWS.MarketWriteLabel>
-                <div>위도</div>
-                <div>경도</div>
+                <MWS.AddressInput type="text" />
+                <MWS.AddressInput type="text" />
               </div>
-              <div>
-                <MWS.MarketWriteLabel>사진 첨부</MWS.MarketWriteLabel>
-                <div>
-                  <div>+</div>
-                  <div>Upload</div>
-                </div>
-              </div>
-            </MWS.AddressWrapper>
-          </div>
+            </MWS.AddressInfo>
+          </MWS.AddressWrapper>
 
-          <div>
-            <MWS.MarketWriteLabel>메인 사진 설정</MWS.MarketWriteLabel>
-          </div>
+          <MWS.ImgPlus>
+            <MWS.MarketWriteLabel>대표이미지</MWS.MarketWriteLabel>
+            <MWS.ImgdivWrapper>
+              <MWS.ImgDiv>
+                <div>+</div>
+                Upload
+              </MWS.ImgDiv>
+            </MWS.ImgdivWrapper>
+          </MWS.ImgPlus>
 
           <MWS.CreateItemBtn isActive={formState.isValid}>
             등록하기

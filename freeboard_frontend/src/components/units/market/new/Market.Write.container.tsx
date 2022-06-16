@@ -1,10 +1,12 @@
 import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
+import { useAuth } from "../../../commons/hooks/useAuth";
 import MarketWriteUI from "./Market.Write.presenter";
 import { CREATE_USED_ITEM } from "./Market.Write.queries";
 
 export default function MarketWriteContainer() {
+  useAuth();
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const router = useRouter();
 
@@ -24,5 +26,6 @@ export default function MarketWriteContainer() {
       Modal.error({ title: "상품등록실패" });
     }
   };
+
   return <MarketWriteUI onClickCreateItem={onClickCreateItem} />;
 }

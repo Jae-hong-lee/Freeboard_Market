@@ -204,7 +204,7 @@ export default function CreateBoardPage(props) {
     setAddressZipcode(data.zonecode);
   };
 
-  // 이미지 초기값 세팅
+  // 이미지 초기값 세팅 (Edit)
   useEffect(() => {
     if (props.data?.fetchBoard.images?.length) {
       setFileUrls([...props.data?.fetchBoard.images]);

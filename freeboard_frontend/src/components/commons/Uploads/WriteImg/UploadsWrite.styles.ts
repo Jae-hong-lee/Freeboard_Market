@@ -6,6 +6,10 @@ export const UploadBtn = styled.div`
   margin-right: 24px;
   background-color: gray;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const UploadImage = styled.img`

@@ -57,16 +57,72 @@ export const CreateItemBtn = styled.button`
 
 export const AddressWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 40px;
 `;
 
 // kakaoMap
 export const KaKaoMapWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-right: 40px;
 `;
 export const kakaoMap = styled.div`
   width: 400px;
   height: 300px;
   background-color: gray;
+`;
+
+// Addreess
+export const AddressInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+export const GPSWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 40px;
+  width: 80%;
+  justify-content: space-between;
+`;
+
+export const Latitude = styled.div`
+  border: 1px solid #bdbdbd;
+  width: 40%;
+  height: 52px;
+  text-align: center;
+`;
+
+export const AddressInput = styled.input`
+  width: 100%;
+  height: 52px;
+  margin-bottom: 20px;
+  border: 1px solid #bdbdbd;
+`;
+
+// upload
+export const ImgdivWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  justify-content: space-between;
+`;
+
+export const ImgDiv = styled.div`
+  width: 180px;
+  height: 180px;
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+// 사진첨부
+export const ImgPlus = styled.div`
+  width: 100%;
+  margin-bottom: 90px;
 `;

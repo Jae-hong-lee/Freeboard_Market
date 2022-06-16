@@ -1,43 +1,49 @@
 import { getDate } from "../../../../commons/libraries/utils";
 import * as MD from "./Market.Detail.styles";
-import { Tooltip } from "antd";
+// import { Tooltip } from "antd";
 
 export default function MarketDetailUI(props) {
   return (
-    <div>
-      <h1>디테일페이지</h1>
-      <div>
-        <div>
+    <MD.Wrapper>
+      <MD.HeaderWrapper>
+        <MD.ProfileWrapper>
           <MD.ProfileImg src="../Detailimage/Profile.png" />
           <div>
-            <div>{props.data?.fetchUseditem.name}</div>
-            <div>Date: {getDate(props.data?.fetchUseditem.createdAt)}</div>
+            <MD.UserName>{props.data?.fetchUseditem.name}</MD.UserName>
+            <MD.ItemTime>
+              Date: {getDate(props.data?.fetchUseditem.createdAt)}
+            </MD.ItemTime>
           </div>
-        </div>
+        </MD.ProfileWrapper>
         <div>
           <MD.LinkImage src="../Detailimage/Link.png" />
           <MD.LinkGPS src="../Detailimage/GPS.png" />
         </div>
-      </div>
+      </MD.HeaderWrapper>
       <MD.DivideLine />
-      <div>
+
+      <MD.ItemTitleWrapper>
         <div>
-          <div>{props.data?.fetchUseditem.remarks}</div>
-          <div>물건종류???</div>
+          <MD.ItemSubTitle>{props.data?.fetchUseditem.remarks}</MD.ItemSubTitle>
+          <MD.ItemTitle>물건종류???</MD.ItemTitle>
         </div>
-        <div>LikeBtn💕</div>
-      </div>
+        <MD.LikeWrapper>
+          <div style={{ font: "16px" }}>❤️</div>
+          <div>{props.data?.fetchUseditem.pickedCount}</div>
+        </MD.LikeWrapper>
+      </MD.ItemTitleWrapper>
+      <MD.PriceDiv>{props.data?.fetchUseditem.price}원</MD.PriceDiv>
+      <MD.CarouselDiv>이미지 캐러셀</MD.CarouselDiv>
 
-      <div>{props.data?.fetchUseditem.price}</div>
+      <MD.ContentsWrapper
+        dangerouslySetInnerHTML={{ __html: props.data?.fetchUseditem.contents }}
+      ></MD.ContentsWrapper>
 
-      <div>이미지 캐러셀</div>
+      <MD.TagWrapper>tags</MD.TagWrapper>
 
-      <div>{props.data?.fetchUseditem.contents}</div>
-
-      <div>tags</div>
       <MD.DivideLine />
-      <div>KakaoMap</div>
+      <MD.KakaoMap>KakaoMap</MD.KakaoMap>
       <MD.DivideLine />
-    </div>
+    </MD.Wrapper>
   );
 }
