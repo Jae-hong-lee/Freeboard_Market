@@ -1,4 +1,3 @@
-// import "../styles/globals.css"; // 이모션 글로벌태그 사용하고 임폴트하면 주석처리
 import "antd/dist/antd.css";
 import { AppProps } from "next/app";
 import "slick-carousel/slick/slick.css";

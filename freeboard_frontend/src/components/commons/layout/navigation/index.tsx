@@ -69,7 +69,7 @@ export default function LayoutNavigation() {
     router.push("/boarder/list");
   };
   const onClickGoMarket = () => {
-    router.push("/market/new");
+    router.push("/market/list");
     // 수정필요
   };
   const onClickGoMypage = () => {
