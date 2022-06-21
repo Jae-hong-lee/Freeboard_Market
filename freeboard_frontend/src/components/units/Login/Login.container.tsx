@@ -24,7 +24,7 @@ export default function LoginContainerPage() {
       console.log(accessToken);
       Modal.success({ content: "로그인성공!" });
       localStorage.setItem("accessToken", accessToken);
-      router.push("/market/new");
+      router.push("/market/list");
     } catch (error) {
       Modal.error({ content: "로그인실패!" });
     }

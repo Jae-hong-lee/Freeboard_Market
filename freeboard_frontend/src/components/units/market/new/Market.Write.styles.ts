@@ -107,8 +107,7 @@ export const AddressInput = styled.input`
 export const ImgdivWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  width: 70%;
-  justify-content: space-between;
+  width: 100%;
 `;
 
 export const ImgDiv = styled.div`

@@ -1,14 +1,16 @@
 import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../../commons/hooks/useAuth";
 import MarketWriteUI from "./Market.Write.presenter";
 import { CREATE_USED_ITEM } from "./Market.Write.queries";
 
-export default function MarketWriteContainer() {
+export default function MarketWriteContainer(props) {
   useAuth();
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const router = useRouter();
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
 
   const onClickCreateItem = async (data) => {
     try {
@@ -16,6 +18,7 @@ export default function MarketWriteContainer() {
         variables: {
           createUseditemInput: {
             ...data,
+            images: fileUrls,
           },
         },
       });
@@ -27,5 +30,31 @@ export default function MarketWriteContainer() {
     }
   };
 
-  return <MarketWriteUI onClickCreateItem={onClickCreateItem} />;
+  const onClickEditItem = () => {
+    console.log("수정하기");
+  };
+
+  const onChangeFileUrls = (fileUrl, index) => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  };
+
+  useEffect(() => {
+    if (props.data?.fetchUseditem.images?.length) {
+      setFileUrls([...props.data?.fetchUseditem.images]);
+    }
+  }, [props.data]);
+
+  return (
+    <MarketWriteUI
+      fileUrls={fileUrls}
+      onChangeFileUrls={onChangeFileUrls}
+      onClickCreateItem={onClickCreateItem}
+      onClickEditItem={onClickEditItem}
+      data={props.data}
+      isEdit={props.isEdit}
+      loading={props.loading}
+    />
+  );
 }

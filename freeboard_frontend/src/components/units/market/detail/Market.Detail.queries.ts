@@ -10,6 +10,12 @@ export const FETCH_USED_ITEM = gql`
       price
       createdAt
       pickedCount
+      images
+      seller {
+        _id
+        name
+        email
+      }
     }
   }
 `;

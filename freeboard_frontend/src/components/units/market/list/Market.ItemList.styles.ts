@@ -76,7 +76,16 @@ export const ImgDiv = styled.div`
   font-weight: 600;
   color: white;
 `;
+
 export const itemImg = styled.img`
   width: 160px;
   height: 160px;
+`;
+
+export const MoveNewItemPage = styled.button`
+  width: 179px;
+  height: 52px;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
 `;

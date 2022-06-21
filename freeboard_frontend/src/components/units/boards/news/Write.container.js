@@ -226,6 +226,7 @@ export default function CreateBoardPage(props) {
       ErrorPw={ErrorPw}
       ErrorTitleContents={ErrorTitleContents}
       ErrorTitleInput={ErrorTitleInput}
+      // Edit
       data={props.data}
       isEdit={props.isEdit}
       isActive={isActive}

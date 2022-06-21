@@ -64,13 +64,17 @@ export const PriceDiv = styled.div`
   font-size: 36px;
   padding-bottom: 80px;
 `;
-// 이미지 캐러셀
-export const CarouselDiv = styled.div`
-  width: 400px;
-  height: 400px;
-  background-color: gray;
-  margin-bottom: 40px;
+// 대표이미지
+export const ContentImg = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
+
+export const Image = styled.img`
+  margin-bottom: 30px;
+  width: 100%;
+`;
+
 // Contents
 export const ContentsWrapper = styled.div`
   width: 100%;
@@ -114,4 +118,22 @@ export const KakaoMap = styled.div`
   width: 100%;
   height: 360px;
   background-color: gray;
+`;
+
+export const Button = styled.button`
+  width: 180px;
+  height: 45px;
+  border-radius: 20px;
+  text-align: center;
+  margin: 0px 12px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  box-shadow: 0px 1px 10px;
+  background-color: #21d4fd;
+  background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%);
+
+  :hover {
+    color: black;
+  }
 `;

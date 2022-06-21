@@ -57,6 +57,11 @@ export default function MarketItemListUI(props) {
           )}
         </InfiniteScroll>
       </MIL.InfiniteWrapper>
+      <div>
+        <MIL.MoveNewItemPage onClick={props.onClickMoveNewItem}>
+          상품 등록하기!
+        </MIL.MoveNewItemPage>
+      </div>
     </MIL.Wrapper>
   );
 }

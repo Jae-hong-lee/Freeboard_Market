@@ -9,7 +9,7 @@ export default function MarketDetailUI(props) {
         <MD.ProfileWrapper>
           <MD.ProfileImg src="../Detailimage/Profile.png" />
           <div>
-            <MD.UserName>{props.data?.fetchUseditem.name}</MD.UserName>
+            <MD.UserName>{props.data?.fetchUseditem.seller.name}</MD.UserName>
             <MD.ItemTime>
               Date: {getDate(props.data?.fetchUseditem.createdAt)}
             </MD.ItemTime>
@@ -25,7 +25,7 @@ export default function MarketDetailUI(props) {
       <MD.ItemTitleWrapper>
         <div>
           <MD.ItemSubTitle>{props.data?.fetchUseditem.remarks}</MD.ItemSubTitle>
-          <MD.ItemTitle>물건종류???</MD.ItemTitle>
+          <MD.ItemTitle>{props.data?.fetchUseditem.name}</MD.ItemTitle>
         </div>
         <MD.LikeWrapper>
           <div style={{ font: "16px" }}>❤️</div>
@@ -33,7 +33,15 @@ export default function MarketDetailUI(props) {
         </MD.LikeWrapper>
       </MD.ItemTitleWrapper>
       <MD.PriceDiv>{props.data?.fetchUseditem.price}원</MD.PriceDiv>
-      <MD.CarouselDiv>이미지 캐러셀</MD.CarouselDiv>
+
+      {/* 대표이미지 */}
+      <MD.ContentImg>
+        {props.data?.fetchUseditem.images
+          ?.filter((el: any) => el)
+          .map((el: any) => (
+            <MD.Image key={el} src={`https://storage.googleapis.com/${el}`} />
+          ))}
+      </MD.ContentImg>
 
       <MD.ContentsWrapper
         dangerouslySetInnerHTML={{ __html: props.data?.fetchUseditem.contents }}
@@ -44,6 +52,8 @@ export default function MarketDetailUI(props) {
       <MD.DivideLine />
       <MD.KakaoMap>KakaoMap</MD.KakaoMap>
       <MD.DivideLine />
+      <MD.Button onClick={props.MoveItemList}>목록으로</MD.Button>
+      <MD.Button onClick={props.EditItemNew}>수정하기</MD.Button>
     </MD.Wrapper>
   );
 }

@@ -11,5 +11,19 @@ export default function MarketDetailItemPage() {
     variables: { useditemId: router.query.useditemId },
   });
 
-  return <MarketDetailUI data={data} />;
+  const MoveItemList = () => {
+    router.push("/market/list");
+  };
+
+  const EditItemNew = () => {
+    router.push(`/market/${router.query.useditemId}/edit`);
+  };
+
+  return (
+    <MarketDetailUI
+      data={data}
+      EditItemNew={EditItemNew}
+      MoveItemList={MoveItemList}
+    />
+  );
 }

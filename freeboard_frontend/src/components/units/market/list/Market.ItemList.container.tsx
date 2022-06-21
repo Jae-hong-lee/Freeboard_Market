@@ -27,14 +27,20 @@ export default function MarketItemListContainer() {
       },
     });
   };
+
   const onClickItem = (e: any) => {
     router.push(`/market/${e.currentTarget.id}`);
+  };
+
+  const onClickMoveNewItem = () => {
+    router.push(`/market/new`);
   };
   return (
     <MarketItemListUI
       data={data}
       loadFunc={loadFunc}
       onClickItem={onClickItem}
+      onClickMoveNewItem={onClickMoveNewItem}
     />
   );
 }
