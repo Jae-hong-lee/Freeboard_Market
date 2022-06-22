@@ -4,13 +4,16 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../commons/hooks/useAuth";
 import MarketWriteUI from "./Market.Write.presenter";
-import { CREATE_USED_ITEM } from "./Market.Write.queries";
+import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "./Market.Write.queries";
 
 export default function MarketWriteContainer(props) {
   useAuth();
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
+  const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
   const router = useRouter();
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
+  const [adreeZipcode, setAddressZipcode] = useState("");
+  const [addressInput, setAddressInput] = useState("");
 
   const onClickCreateItem = async (data) => {
     try {
@@ -19,6 +22,10 @@ export default function MarketWriteContainer(props) {
           createUseditemInput: {
             ...data,
             images: fileUrls,
+            useditemAddress: {
+              zipcode: adreeZipcode,
+              address: addressInput,
+            },
           },
         },
       });
@@ -30,8 +37,25 @@ export default function MarketWriteContainer(props) {
     }
   };
 
-  const onClickEditItem = () => {
-    console.log("수정하기");
+  const onClickEditItem = async (data) => {
+    // const currentFiles = JSON.stringify(fileUrls);
+    // const defaultFiles = JSON.stringify(props.data.fetchUseditem.images);
+    // const isChangedFiles = currentFiles !== defaultFiles;
+    try {
+      const result = await updateUseditem({
+        variables: {
+          useditemId: router.query.useditemId,
+          updateUseditemInput: {
+            ...data,
+            images: fileUrls,
+          },
+        },
+      });
+      Modal.success({ title: "상품수정성공" });
+      router.push(`/market/${result.data.updateUseditem._id}`);
+    } catch (error) {
+      Modal.error({ title: "상품수정실패" });
+    }
   };
 
   const onChangeFileUrls = (fileUrl, index) => {
@@ -46,6 +70,19 @@ export default function MarketWriteContainer(props) {
     }
   }, [props.data]);
 
+  // isModalView
+  const [isModalView, setisModalView] = useState(false);
+
+  const onToggleModal = () => {
+    setisModalView((perv) => !perv);
+  };
+
+  const handleCompleteDaum = (addressdata) => {
+    onToggleModal();
+    setAddressInput(addressdata.address);
+    setAddressZipcode(addressdata.zonecode);
+  };
+
   return (
     <MarketWriteUI
       fileUrls={fileUrls}
@@ -55,6 +92,12 @@ export default function MarketWriteContainer(props) {
       data={props.data}
       isEdit={props.isEdit}
       loading={props.loading}
+      // 주소등록
+      handleCompleteDaum={handleCompleteDaum}
+      onToggleModal={onToggleModal}
+      isModalView={isModalView}
+      zipcode={adreeZipcode}
+      address={addressInput}
     />
   );
 }

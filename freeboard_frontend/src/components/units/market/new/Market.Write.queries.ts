@@ -4,7 +4,6 @@ export const CREATE_USED_ITEM = gql`
   mutation createUseditem($createUseditemInput: CreateUseditemInput!) {
     createUseditem(createUseditemInput: $createUseditemInput) {
       _id
-      name
     }
   }
 `;
@@ -19,16 +18,6 @@ export const UPDATE_USED_ITEM = gql`
       updateUseditemInput: $updateUseditemInput
     ) {
       _id
-      name
-      remarks
-      contents
-      price
-      images
-      seller {
-        _id
-        name
-        email
-      }
     }
   }
 `;

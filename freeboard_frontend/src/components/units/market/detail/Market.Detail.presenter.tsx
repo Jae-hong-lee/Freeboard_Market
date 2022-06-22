@@ -1,6 +1,6 @@
+import KakaoMap from "../../../../commons/kakakomap";
 import { getDate } from "../../../../commons/libraries/utils";
 import * as MD from "./Market.Detail.styles";
-// import { Tooltip } from "antd";
 
 export default function MarketDetailUI(props) {
   return (
@@ -50,7 +50,7 @@ export default function MarketDetailUI(props) {
       <MD.TagWrapper>tags</MD.TagWrapper>
 
       <MD.DivideLine />
-      <MD.KakaoMap>KakaoMap</MD.KakaoMap>
+      <KakaoMap address={props.data?.fetchUseditem.useditemAddress?.address} />
       <MD.DivideLine />
       <MD.Button onClick={props.MoveItemList}>목록으로</MD.Button>
       <MD.Button onClick={props.EditItemNew}>수정하기</MD.Button>

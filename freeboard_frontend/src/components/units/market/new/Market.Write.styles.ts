@@ -96,6 +96,32 @@ export const Latitude = styled.div`
   text-align: center;
 `;
 
+export const AddressBox = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const AddressBtn = styled.button`
+  width: 124px;
+  height: 52px;
+  margin-left: 16px;
+  background-color: black;
+  cursor: pointer;
+  color: white;
+  :hover {
+    background-color: #2860e1;
+  }
+`;
+
+export const AddressZipcode = styled.input`
+  width: 77px;
+  height: 52px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
+  margin-bottom: 20px;
+  margin-right: 20px;
+`;
+
 export const AddressInput = styled.input`
   width: 100%;
   height: 52px;

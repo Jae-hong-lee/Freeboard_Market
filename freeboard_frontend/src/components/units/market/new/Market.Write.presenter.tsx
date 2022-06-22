@@ -6,6 +6,9 @@ import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import UploadWritePage from "../../../commons/Uploads/WriteImg/UploadsWrite.container";
 import { v4 as uuidv4 } from "uuid";
+import KakaoMap from "../../../../commons/kakakomap";
+import DaumPostcode from "react-daum-postcode";
+import { Modal } from "antd";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -41,12 +44,20 @@ export default function MarketWriteUI(props) {
 
   return (
     <>
+      {/* 모달 */}
+      {props.isModalView && (
+        <Modal
+          visible={true}
+          onOk={props.onToggleModal}
+          onCancel={props.onToggleModal}
+        >
+          <DaumPostcode onComplete={props.handleCompleteDaum} />
+        </Modal>
+      )}
       <form
-        onSubmit={
-          props.isEdit
-            ? handleSubmit(props.onClickEditItem)
-            : handleSubmit(props.onClickCreateItem)
-        }
+        onSubmit={handleSubmit(
+          props.isEdit ? props.onClickEditItem : props.onClickCreateItem
+        )}
       >
         <MWS.Wrapper>
           <MWS.WriteItemHeader>
@@ -103,18 +114,40 @@ export default function MarketWriteUI(props) {
           <MWS.AddressWrapper>
             <MWS.KaKaoMapWrapper>
               <MWS.MarketWriteLabel>거래위치</MWS.MarketWriteLabel>
-              <MWS.kakaoMap>KakaoMap</MWS.kakaoMap>
+
+              {/* 카카오맵 */}
+              <KakaoMap
+                address={
+                  props.address ||
+                  props.data?.fetchUseditem.useditemAddress.address
+                }
+              />
             </MWS.KaKaoMapWrapper>
             <MWS.AddressInfo>
-              <MWS.MarketWriteLabel>GPS</MWS.MarketWriteLabel>
-              <MWS.GPSWrapper>
-                <MWS.Latitude>위도</MWS.Latitude>
-                <MWS.Latitude>경도</MWS.Latitude>
-              </MWS.GPSWrapper>
-
               <MWS.MarketWriteLabel>주소</MWS.MarketWriteLabel>
               <div>
-                <MWS.AddressInput type="text" />
+                <MWS.AddressBox>
+                  <MWS.AddressZipcode
+                    placeholder="00000"
+                    readOnly
+                    value={
+                      props.zipcode ||
+                      props.data?.fetchUseditem.useditemAddress.zipcode
+                    }
+                  />
+                  <MWS.AddressBtn type="button" onClick={props.onToggleModal}>
+                    우편번호 검색
+                  </MWS.AddressBtn>
+                </MWS.AddressBox>
+
+                <MWS.AddressInput
+                  type="text"
+                  readOnly
+                  value={
+                    props.address ||
+                    props.data?.fetchUseditem.useditemAddress.address
+                  }
+                />
                 <MWS.AddressInput type="text" />
               </div>
             </MWS.AddressInfo>
