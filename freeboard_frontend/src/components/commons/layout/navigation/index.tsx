@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import { gql, useQuery } from "@apollo/client";
-import { useEffect, useState } from "react";
+import { gql, useMutation, useQuery } from "@apollo/client";
+import { accessTokenState } from "../../../../commons/store";
+import { useRecoilState } from "recoil";
 
 const FETCH_USER_LOGGED_IN = gql`
   query fetchUserLoggedIn {
@@ -11,6 +12,16 @@ const FETCH_USER_LOGGED_IN = gql`
     }
   }
 `;
+// mutation{
+//   logoutUser
+// }
+
+const LOGEOUT_USER = gql`
+  mutation logoutUser {
+    logoutUser
+  }
+`;
+
 const Wrapper = styled.div`
   height: 30px;
   width: 100%;
@@ -59,6 +70,7 @@ const SingUpPage = styled.div`
   }
 `;
 export default function LayoutNavigation() {
+  const [, setAccessToken] = useRecoilState(accessTokenState);
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
   const router = useRouter();
   // state 만들고 초기값 false 온클릭 발생할때 스테이트 바뀌게 true
@@ -68,13 +80,13 @@ export default function LayoutNavigation() {
   const onClickGoList = () => {
     router.push("/boarder/list");
   };
+
   const onClickGoMarket = () => {
     router.push("/market/list");
-    // 수정필요
   };
   const onClickGoMypage = () => {
     router.push("/");
-    // 수정필요
+    // 마이페이지로 이동
   };
   const onClickAPI = () => {
     router.push("/boarder/CoffeeAPI");
@@ -83,21 +95,34 @@ export default function LayoutNavigation() {
   const onClickLoginMove = () => {
     router.push("/Login");
   };
+
   const onClickSingUpMove = () => {
     router.push("/Signup");
   };
-  const [checkToken, setCheckToken] = useState("");
-  useEffect(() => {
-    setCheckToken(localStorage.getItem("accessToken") || "");
-    console.log(data);
-  }, []);
-  // const checkToken = localStorage.getItem("accessToken");
+  // logoutUser
+  const [logoutUser] = useMutation(LOGEOUT_USER);
+
+  const onClickLogOut = async () => {
+    try {
+      const result = await logoutUser();
+      setAccessToken("");
+      localStorage.setItem("accessToken", "");
+      console.log(result);
+      router.push("/Login");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <>
       <Wrapper>
         <NavigationWrapper>
-          {checkToken ? (
-            <SiteName>{data?.fetchUserLoggedIn?.name}님 환영합니다.</SiteName>
+          {data ? (
+            <SiteName>
+              {data?.fetchUserLoggedIn?.name}님 환영합니다.
+              <LoginPage onClick={onClickLogOut}>로그아웃</LoginPage>
+            </SiteName>
           ) : (
             <SiteName>
               <SingUpPage onClick={onClickSingUpMove}>회원가입</SingUpPage>

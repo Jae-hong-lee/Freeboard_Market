@@ -38,9 +38,6 @@ export default function MarketWriteContainer(props) {
   };
 
   const onClickEditItem = async (data) => {
-    // const currentFiles = JSON.stringify(fileUrls);
-    // const defaultFiles = JSON.stringify(props.data.fetchUseditem.images);
-    // const isChangedFiles = currentFiles !== defaultFiles;
     try {
       const result = await updateUseditem({
         variables: {
@@ -48,6 +45,10 @@ export default function MarketWriteContainer(props) {
           updateUseditemInput: {
             ...data,
             images: fileUrls,
+            useditemAddress: {
+              zipcode: adreeZipcode,
+              address: addressInput,
+            },
           },
         },
       });
