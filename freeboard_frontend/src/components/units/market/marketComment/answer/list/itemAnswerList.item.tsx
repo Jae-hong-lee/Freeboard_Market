@@ -1,36 +1,34 @@
-import * as BC from "./itemQuestionList.style";
-import MarketCommentWrite from "../write/itemQuestion.container";
+import * as BC from "./itemAnswerList.style";
+import MarketCommentAnswerWrite from "../write/itemAnswer.container";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import {
-  DELETE_USED_ITEM_QUESTION,
-  FETCH_USED_ITEM_QUESTIONS,
-} from "./itemQuestionList.queries";
+  DELETE_USED_ITEM_QUESTION_ANSWER,
+  FETCH_USED_ITEM_QUESTION_ANSWERS,
+} from "./itemAnswerList.queries";
 import { Modal } from "antd";
-import { useRouter } from "next/router";
-import MarketCommentAnswerWrite from "../../answer/write/itemAnswer.container";
-import MarketAnswerList from "../../answer/list/itemAnswerList.container";
 
-export default function MarketCommentListItemUI(props) {
+export default function MarketAnswerListItemUI(props) {
   const [isEdit, setIsEdit] = useState(false);
-  const [isToggle, setIsToggle] = useState(false);
-  const [deleteUseditemQuestion] = useMutation(DELETE_USED_ITEM_QUESTION);
-  const router = useRouter();
+  const [deleteUseditemQuestionAnswer] = useMutation(
+    DELETE_USED_ITEM_QUESTION_ANSWER
+  );
+  // const router = useRouter();
   const onClickEdit = () => {
     setIsEdit(true);
   };
 
   const onClickDel = async () => {
     try {
-      await deleteUseditemQuestion({
+      await deleteUseditemQuestionAnswer({
         variables: {
-          useditemQuestionId: props.el?._id,
+          useditemQuestionAnswerId: props.el?._id,
         },
         refetchQueries: [
           {
-            query: FETCH_USED_ITEM_QUESTIONS,
+            query: FETCH_USED_ITEM_QUESTION_ANSWERS,
             variables: {
-              useditemId: router.query.useditemId,
+              useditemQuestionId: props.id,
             },
           },
         ],
@@ -39,10 +37,6 @@ export default function MarketCommentListItemUI(props) {
     } catch (error) {
       Modal.error({ title: "댓글삭제실패!" });
     }
-  };
-
-  const onClickToggle = () => {
-    setIsToggle((prev) => !prev);
   };
 
   return (
@@ -61,25 +55,23 @@ export default function MarketCommentListItemUI(props) {
                 <BC.DeleteBtn src="/images/Delete.png" onClick={onClickDel} />
                 {/* 수정  props 로 함수 받기 */}
                 <BC.EditBtn src="/images/Edit.png" onClick={onClickEdit} />
-                <button onClick={onClickToggle}>질문답변하기</button>
               </BC.BtnWrapper>
             </BC.WriterWrapper>
             <BC.Footer>
               <BC.Contents>{props.el?.contents}</BC.Contents>
             </BC.Footer>
           </BC.CommentWrapper>
-          {isToggle && <MarketCommentAnswerWrite id={props.el._id} />}
-          <MarketAnswerList id={props.el._id} />
         </BC.Wrapper>
-        // { isToggle && 댓글답변토글, 답변리스트}
       )}
 
       {/* isEdit 이 true 일때  */}
       {isEdit && (
-        <MarketCommentWrite isEdit={true} setIsEdit={setIsEdit} el={props.el} />
-        // { !isToggle && 댓글답변토글, 답변 리스트}
+        <MarketCommentAnswerWrite
+          isEdit={true}
+          setIsEdit={setIsEdit}
+          el={props.el}
+        />
       )}
-      {isEdit && <MarketAnswerList id={props.el._id} />}
     </>
   );
 }

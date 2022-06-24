@@ -1,19 +1,21 @@
 import { useMutation } from "@apollo/client";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import {
-  CREATE_USED_ITEM_QUESTION,
-  UPDATE_USED_ITEM_QUESTION,
-} from "./itemQuestion.queries";
-import { FETCH_USED_ITEM_QUESTIONS } from "../list/itemQuestionList.queries";
+  CREATE_USED_ITEM_QUESTION_ANSWER,
+  UPDATE_USED_ITEM_QUESTION_ANSWER, // 답글 수정
+} from "./itemAnswer.queries";
 
 import { Modal } from "antd";
-import MarketCommentWriteUI from "./itemQuestion.presenter";
+import MarketCommentAnswerWriteUI from "./itemAnswer.presenter";
+import { FETCH_USED_ITEM_QUESTION_ANSWERS } from "../list/itemAnswerList.queries";
 
-export default function MarketCommentWrite(props: any) {
-  const router = useRouter();
-  const [createUseditemQuestion] = useMutation(CREATE_USED_ITEM_QUESTION);
-  const [updateUseditemQuestion] = useMutation(UPDATE_USED_ITEM_QUESTION);
+export default function MarketCommentAnswerWrite(props: any) {
+  const [createUseditemQuestionAnswer] = useMutation(
+    CREATE_USED_ITEM_QUESTION_ANSWER
+  );
+  const [updateUseditemQuestionAnswer] = useMutation(
+    UPDATE_USED_ITEM_QUESTION_ANSWER
+  );
 
   const [contents, setContents] = useState("");
 
@@ -21,21 +23,21 @@ export default function MarketCommentWrite(props: any) {
     setContents(event.target.value);
   };
 
-  const onClickSubmit = async () => {
+  const onClickSubmit = async (e: any) => {
     if (contents) {
       try {
-        const result = await createUseditemQuestion({
+        const result = await createUseditemQuestionAnswer({
           variables: {
-            useditemId: router.query.useditemId,
-            createUseditemQuestionInput: {
+            useditemQuestionId: e.target.id,
+            createUseditemQuestionAnswerInput: {
               contents,
             },
           },
           refetchQueries: [
             {
-              query: FETCH_USED_ITEM_QUESTIONS,
+              query: FETCH_USED_ITEM_QUESTION_ANSWERS,
               variables: {
-                useditemId: router.query.useditemId,
+                useditemQuestionId: e.target.id,
               },
             },
           ], // reFetch
@@ -43,9 +45,6 @@ export default function MarketCommentWrite(props: any) {
         console.log(result);
         Modal.success({
           content: "댓글이 등록되었습니다!!",
-          onOk() {
-            setContents("");
-          },
         });
       } catch (error) {
         console.log(contents);
@@ -57,16 +56,16 @@ export default function MarketCommentWrite(props: any) {
     }
   };
 
-  const UpdateCommentOnclick = async () => {
+  const UpdateOnclick = async () => {
     if (contents) {
       try {
         if (!props.el?._id) return;
-        const updateUseditemQuestionInput = {};
-        if (contents) updateUseditemQuestionInput.contents = contents;
-        await updateUseditemQuestion({
+        const updateUseditemQuestionAnswerInput = {};
+        if (contents) updateUseditemQuestionAnswerInput.contents = contents;
+        await updateUseditemQuestionAnswer({
           variables: {
-            updateUseditemQuestionInput,
-            useditemQuestionId: props.el?._id,
+            updateUseditemQuestionAnswerInput,
+            useditemQuestionAnswerId: props.el._id,
           },
           // refetchQueries: [
           //   {
@@ -87,9 +86,10 @@ export default function MarketCommentWrite(props: any) {
 
   return (
     <>
-      <MarketCommentWriteUI
-        UpdateCommentOnclick={UpdateCommentOnclick}
+      <MarketCommentAnswerWriteUI
+        UpdateOnclick={UpdateOnclick}
         onClickSubmit={onClickSubmit}
+        id={props.id}
         isEdit={props.isEdit}
         el={props.el}
         onChangeContents={onChangeContents}
