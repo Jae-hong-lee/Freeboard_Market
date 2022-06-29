@@ -41,11 +41,6 @@ export default function BoardCommentWrite(props) {
       setContentsError("");
     }
   };
-  // 별점
-  // const onChangeStar = (e) => {
-  //   setRating(e);
-  //   // console.log(value);
-  // };
 
   const onClickSubmit = async () => {
     if (!writer) {

@@ -20,7 +20,7 @@ export default function CallbackPromiseAsyncAwaitPage() {
       bbb.send();
       // 이제 bbb가 끝나면 실행딜 콜백함수
       bbb.addEventListener("load", (res: any) => {
-        const userId = JSON.parse(res.target.response.UserId);
+        const userId = JSON.parse(res.target.response).UserId;
 
         const ccc = new XMLHttpRequest();
         ccc.open("get", `http://koreanjson.com/posts?userId=${userId}`);

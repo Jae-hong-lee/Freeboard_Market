@@ -38,7 +38,7 @@ export default function MarketCommentWrite(props: any) {
                 useditemId: router.query.useditemId,
               },
             },
-          ], // reFetch
+          ],
         });
         console.log(result);
         Modal.success({

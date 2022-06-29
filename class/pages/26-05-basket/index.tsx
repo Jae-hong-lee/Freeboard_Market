@@ -28,7 +28,6 @@ export default function MapBoardPage() {
     const baskets = JSON.parse(localStorage.getItem("baskets") || "[]");
 
     // 2. 이미 담겼는지 확인하기
-
     const temp = baskets.filter((basketsEl) => basketsEl._id === el._id);
     if (temp.length === 1) {
       alert("이미 담으신 물품입니다!");
