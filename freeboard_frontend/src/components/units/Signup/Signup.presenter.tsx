@@ -13,10 +13,10 @@ const schma = yup.object({
 
   password: yup
     .string()
-    .max(8, "비밀번호는 최대 8자리 이내로 입력해주세요")
+    .max(10, "비밀번호는 최대 10자리 이내로 입력해주세요")
     .required("비밀번호는 필수 입력사항입니다.")
     .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{0,8}$/,
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{0,10}$/,
       "비밀번호는 영문,숫자,특수문자를 포함해야 합니다."
     ),
 
@@ -24,9 +24,6 @@ const schma = yup.object({
     .string()
     .oneOf([yup.ref("password"), null], "패스워드와 일치하지 않습니다.")
     .required("패스워드 확인을 입력하지 않았습니다."),
-
-  // .string()
-  // .oneOf([yup.ref("myPassword"), null], "비밀번호가 일치하지 않습니다."),
 });
 
 export default function SignUpPresenterPage(props) {
@@ -81,7 +78,7 @@ export default function SignUpPresenterPage(props) {
             <SPS.SignUpLabel>핸드폰</SPS.SignUpLabel>
             <SPS.NumberWrapper>
               <SPS.NumberInput placeholder="010-0000-0000" />
-              <SPS.NumberBtn>인증번호 발송</SPS.NumberBtn>
+              <SPS.NumberBtn type="button">인증번호 발송</SPS.NumberBtn>
             </SPS.NumberWrapper>
           </SPS.PhoneNumWrapper>
           <SPS.PhoneNumWrapper>

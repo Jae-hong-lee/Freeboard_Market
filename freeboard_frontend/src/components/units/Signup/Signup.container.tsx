@@ -8,7 +8,7 @@ export default function SignUpContainerPage() {
   const router = useRouter();
   const [createUser] = useMutation(CREATE_USER);
 
-  const onClickSignup = async (data) => {
+  const onClickSignup = async (data: any) => {
     const { name, email, password } = data;
     try {
       const result = await createUser({
@@ -20,7 +20,7 @@ export default function SignUpContainerPage() {
           },
         },
       });
-      console.log(result.data);
+
       Modal.success({ content: "회원가입성공!" });
       router.push("./Login");
     } catch (error) {
