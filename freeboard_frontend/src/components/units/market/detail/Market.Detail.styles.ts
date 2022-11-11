@@ -137,3 +137,10 @@ export const Button = styled.button`
     color: black;
   }
 `;
+
+// Buttom Wrapper
+export const BtnWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+`;

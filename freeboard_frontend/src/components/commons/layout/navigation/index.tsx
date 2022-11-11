@@ -117,7 +117,7 @@ export default function LayoutNavigation() {
         <NavigationWrapper>
           {data ? (
             <SiteName>
-              {data?.fetchUserLoggedIn?.name}님 환영합니다.
+              {data?.fetchUserLoggedIn?.name.slice(0, 5)}님 환영합니다.
               <LoginPage onClick={onClickLogOut}>로그아웃</LoginPage>
             </SiteName>
           ) : (

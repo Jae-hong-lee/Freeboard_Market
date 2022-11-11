@@ -52,9 +52,11 @@ export default function MarketDetailUI(props) {
       <MD.DivideLine />
       <KakaoMap address={props.data?.fetchUseditem.useditemAddress?.address} />
       <MD.DivideLine />
-      <MD.Button onClick={props.MoveItemList}>목록으로</MD.Button>
-      <MD.Button onClick={props.EditItemNew}>수정하기</MD.Button>
-      <MD.Button onClick={props.DeleteItem}>삭제하기</MD.Button>
+      <MD.BtnWrapper>
+        <MD.Button onClick={props.MoveItemList}>목록으로</MD.Button>
+        <MD.Button onClick={props.EditItemNew}>수정하기</MD.Button>
+        <MD.Button onClick={props.DeleteItem}>삭제하기</MD.Button>
+      </MD.BtnWrapper>
     </MD.Wrapper>
   );
 }

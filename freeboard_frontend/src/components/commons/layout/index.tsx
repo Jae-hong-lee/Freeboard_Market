@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import LayoutBanner from "./banner";
 import LayoutFooter from "./footer";
 import LayoutHadder from "./header";
-import LayoutNavigation from "./navigation";
+import LayoutNavigation from "./navigation/index";
 import styled from "@emotion/styled";
 import { AnimatePresence, motion } from "framer-motion";
 interface ILayoutpageProps {
