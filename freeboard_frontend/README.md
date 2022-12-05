@@ -1,8 +1,6 @@
-ReadMe Test
-![타이틀](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f4a6eee8-db04-46db-a766-845cda8e12ac/Untitled.png)
-
 # 프로젝트 소개
 
+![Title image](https://user-images.githubusercontent.com/72030487/205587631-abe41f58-634d-479c-8afe-c373a4a72187.png)
 **(중고마켓) 중고마켓 개인프로젝트 입니다**
 
 - Github 레포지토리(클라이언트) :
