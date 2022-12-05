@@ -74,7 +74,7 @@ export default function SignUpPresenterPage(props) {
           </SPS.SignUpBody>
           {/* 핸드폰 인증 */}
           {/* <SPS.DivideLine /> */}
-          <SPS.PhoneNumWrapper>
+          {/* <SPS.PhoneNumWrapper>
             <SPS.SignUpLabel>핸드폰</SPS.SignUpLabel>
             <SPS.NumberWrapper>
               <SPS.NumberInput placeholder="010-0000-0000" />
@@ -90,7 +90,7 @@ export default function SignUpPresenterPage(props) {
               />
               <SPS.NumberBtn>확인</SPS.NumberBtn>
             </SPS.NumberWrapper>
-          </SPS.PhoneNumWrapper>
+          </SPS.PhoneNumWrapper> */}
           <SPS.LoginBtn isActive={formState.isValid}>회원가입</SPS.LoginBtn>
         </form>
         {/* ------ */}

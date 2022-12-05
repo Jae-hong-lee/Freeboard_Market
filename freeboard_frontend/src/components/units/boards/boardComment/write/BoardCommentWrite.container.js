@@ -84,6 +84,10 @@ export default function BoardCommentWrite(props) {
         });
       }
     }
+    setWriter("");
+    setPassword("");
+    setRating(0);
+    setContents("");
   };
 
   const UpdateCommentOnclick = async () => {
@@ -136,8 +140,9 @@ export default function BoardCommentWrite(props) {
         contentsError={contentsError}
         contents={contents}
         rating={rating}
+        writer={writer}
+        password={password}
         setRating={setRating}
-        // onChangeStar={onChangeStar}
       />
     </>
   );

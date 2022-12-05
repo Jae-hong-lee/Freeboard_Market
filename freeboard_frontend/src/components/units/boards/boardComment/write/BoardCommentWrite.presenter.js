@@ -14,12 +14,14 @@ export default function BoardCommentWriteUI(props) {
             onChange={props.onChangeWriter}
             defaultValue={props.el?.writer}
             readOnly={!!props.el?.writer}
+            value={!!props.el?.writer ? props.el?.writer : props.writer}
           />
           <SC.Error>{props.writerError}</SC.Error>
           <SC.Input
             type="password"
             placeholder="비밀번호"
             onChange={props.onChangePassword}
+            value={props.password}
           />
           <SC.Error>{props.passwordError}</SC.Error>
 
