@@ -30,11 +30,11 @@
 
 ### 💻회원가입
 
-![회원가입](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e1418b90-4352-4196-a222-ea9cef36e1cc/%E1%84%92%E1%85%AC%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%80%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8-min.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221205%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221205T081718Z&X-Amz-Expires=86400&X-Amz-Signature=ee9bf9293d348cabda1677398c3a5ddd8a583005d36d411c17fe1fdaa95300d3&X-Amz-SignedHeaders=host&x-id=GetObject)
+![회원가입](https://user-images.githubusercontent.com/72030487/208620064-a9e7d894-3197-4fa7-af30-e449dfbf997e.png)
 
 ### 💻로그인
 
-![로그인](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/bc346de6-96ee-41b5-9732-085fe08f2ae2/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%8B%E1%85%B5%E1%86%AB-min.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221205%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221205T084012Z&X-Amz-Expires=86400&X-Amz-Signature=c242b0f96a2257652d3581ec84651b29c6d94336b2c2643835a33b65a19b00fa&X-Amz-SignedHeaders=host&x-id=GetObject)
+![로그인](https://user-images.githubusercontent.com/72030487/208620302-9f0367f5-8a23-4154-9567-ccdd6188f904.png)
 
 ### 💻중고마켓 메인페이지
 
